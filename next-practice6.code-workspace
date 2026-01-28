@@ -20,6 +20,8 @@
       "*": false,
       "typescript": false,
       "yaml": false
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
