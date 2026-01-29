@@ -4,7 +4,7 @@ import { Parts } from "./parts/Parts3";
 
 const Page = () => {
   return (
-    <div className="p-24">
+    <div className="p-4">
       <Parts />
     </div>
   );
