@@ -40,3 +40,12 @@
   - https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md
 - 利用にはGitHub Copilotサブスクリプションまたは開発者自身のAPIキーが必要
   - https://138io.com/archives/9081
+
+### simple-git
+
+- https://www.npmjs.com/package/simple-git
+- 残作業
+  - テンプレートファイルを読み込んで所定の箇所にdiffの情報を流し込む
+  - テンプレートファイルをコマンドラインのオプションで指定できるようにする
+  - 出力対象外のファイル（package-lock.json など）を指定できるようにする
+  - 出力ファイルの先をvscodeのcopilot連携できるディレクトリに変更する
