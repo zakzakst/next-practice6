@@ -1,5 +1,12 @@
 "use client";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+} from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: {
@@ -24,6 +31,12 @@ const styles = StyleSheet.create({
   box: {
     borderWidth: 1,
     padding: 12,
+  },
+  image: {
+    width: 30,
+    height: 30,
+    display: "flex",
+    backgroundColor: "#f00",
   },
 });
 
@@ -53,7 +66,14 @@ export const Parts = () => {
             <Text style={styles.label}>名前:</Text>
             <Text style={styles.value}>山田太郎</Text>
           </View>
-
+          {/* <Image src="/next.svg" style={{ width: 120, marginBottom: 16 }} /> */}
+          <Image src="/bg.png" style={{ width: 120, marginBottom: 16 }} />
+          <View style={{ backgroundColor: "#000", height: 40 }}>
+            {/* <Image
+              src="https://placehold.jp/150x150.png"
+              // style={styles.image}
+            /> */}
+          </View>
           <View style={styles.row}>
             <Text style={styles.label}>日付:</Text>
             <Text style={styles.value}>2026/01/31</Text>

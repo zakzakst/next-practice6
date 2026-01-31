@@ -12,6 +12,7 @@
 - useEffectとuseStateで描画タイミングをコントロールする必要があった
   - https://github.com/diegomura/react-pdf/issues/2599
 - propsなどでPDFコンポーネントに値を渡せば、フォーム入力内容を反映するなどの操作もできる
+- ImageはSVGと外部画像が上手く表示できなかった
 
 ### cleave.js
 
