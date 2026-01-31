@@ -47,13 +47,13 @@ const main = async () => {
   let md = "";
 
   for (const f of files) {
-    md += `
-### ${f.file}
-
+    if (f.file) {
+      md += `### ${f.file}
 \`\`\`diff
 ${f.diff}
 \`\`\`
 `;
+    }
   }
 
   fs.writeFileSync("tasks/develop-diff/diff.md", md, "utf8");
