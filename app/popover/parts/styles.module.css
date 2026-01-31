@@ -1,0 +1,5 @@
+.popover {
+  top: anchor(bottom);
+  left: anchor(left);
+  position-try-fallbacks: flip-inline;
+}
