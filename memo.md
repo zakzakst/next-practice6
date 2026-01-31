@@ -9,6 +9,9 @@
 #### PDFファイル生成
 
 - https://zenn.dev/ksk2/articles/c0cf38b8ba61ec
+- useEffectとuseStateで描画タイミングをコントロールする必要があった
+  - https://github.com/diegomura/react-pdf/issues/2599
+- propsなどでPDFコンポーネントに値を渡せば、フォーム入力内容を反映するなどの操作もできる
 
 ### cleave.js
 
