@@ -41,7 +41,8 @@ const parseDiff = (diffText: string): DiffFile[] => {
 };
 
 const main = async () => {
-  const diff = await git.diff(["develop"]);
+  // 実際のプロジェクトだとorigin/developとの差分を取得することになるが、自分の作業はdevelop⇒mainで更新しているため、このように指定
+  const diff = await git.diff(["origin/main"]);
   const files = parseDiff(diff);
 
   let md = "";
