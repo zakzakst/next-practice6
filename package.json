@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "simple-git": "tsx tasks/simple-git.ts develop"
+    "simple-git": "tsx tasks/simple-git.ts develop",
+    "simple-git-review": "tsx tasks/run-and-review.ts",
+    "review-diff": "tsx tasks/develop-diff/index.ts"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.3.2",
