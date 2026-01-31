@@ -32,3 +32,20 @@
 - https://zenn.dev/shouta0715/articles/6823ea33cd3778
 - bash: `LOGGER_ENV=production npm run dev`
 - powershell: `$env:LOGGER_ENV="production"; npm run dev`
+
+### GitHub Copilot SDK
+
+- 下記を参考に試したが、上手くいかなかった。copilotの認証・ライセンスが関わっている？
+  - https://rutla.jp/blog/8544/
+  - https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md
+- 利用にはGitHub Copilotサブスクリプションまたは開発者自身のAPIキーが必要
+  - https://138io.com/archives/9081
+
+### simple-git
+
+- https://www.npmjs.com/package/simple-git
+- 残作業
+  - テンプレートファイルを読み込んで所定の箇所にdiffの情報を流し込む
+  - テンプレートファイルをコマンドラインのオプションで指定できるようにする
+  - 出力対象外のファイル（package-lock.json など）を指定できるようにする
+  - 出力ファイルの先をvscodeのcopilot連携できるディレクトリに変更する
