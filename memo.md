@@ -32,3 +32,11 @@
 - https://zenn.dev/shouta0715/articles/6823ea33cd3778
 - bash: `LOGGER_ENV=production npm run dev`
 - powershell: `$env:LOGGER_ENV="production"; npm run dev`
+
+### GitHub Copilot SDK
+
+- 下記を参考に試したが、上手くいかなかった。copilotの認証・ライセンスが関わっている？
+  - https://rutla.jp/blog/8544/
+  - https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md
+- 利用にはGitHub Copilotサブスクリプションまたは開発者自身のAPIキーが必要
+  - https://138io.com/archives/9081
