@@ -70,4 +70,10 @@ Prompt → Agent → Workflow
 - コードレビュー（番人）とコードレビュー（教師）
   - エラーなどを検出する用のコードレビューと成長機会としてのコードレビューの2パターン作ってみる
   - Workflowだけでなく、Agentの性格変えることもやってみる
+    - ⇒済
 - promptにagent指定して、workflow ○○をやってください。と記載
+  - ⇒済
+- 残作業
+  - 各promptが想定通りに動くか（copilotの無料枠を使い切ってしまったので、復活する2/7以降に試す）
+  - prompt、workflowファイルはフォルダでまとめられるか確認する
+    - イメージ：`.github/prompts/merge-review`配下に`coach.prompt.md`とかが入る
