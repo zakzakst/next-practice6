@@ -1,4 +1,0 @@
----
-name: review
-agent: review
----

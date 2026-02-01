@@ -54,3 +54,20 @@
     - ⇒ copilot側でファイル読み込み後の処理を変えたpromptを用意する方針に変更
   - 出力ファイルの先をvscodeのcopilot連携できるディレクトリに変更する
     - ⇒ プロンプトを出力するのでなく、diffを出力し、それをcopilot側で読み込んでもらう方針に変更
+
+### .github/prompts,agents,workflows
+
+```
+GitHub Copilot の思想は
+Prompt → Agent → Workflow
+つまり：
+- 人間が目的を書く（Prompt）
+- Agent がそれを理解して
+- Workflow に沿って実行する
+という三層構造です。
+```
+
+- コードレビュー（番人）とコードレビュー（教師）
+  - エラーなどを検出する用のコードレビューと成長機会としてのコードレビューの2パターン作ってみる
+  - Workflowだけでなく、Agentの性格変えることもやってみる
+- promptにagent指定して、workflow ○○をやってください。と記載
