@@ -77,3 +77,5 @@ Prompt → Agent → Workflow
   - 各promptが想定通りに動くか（copilotの無料枠を使い切ってしまったので、復活する2/7以降に試す）
   - prompt、workflowファイルはフォルダでまとめられるか確認する
     - イメージ：`.github/prompts/merge-review`配下に`coach.prompt.md`とかが入る
+  - 複数作業を連携する方法を調べる
+    - diffのレビューとかはskillsに入れてworkflowでは各作業の呼び出しをするみたいなファイル構成が良かったりする？
