@@ -54,6 +54,7 @@ const main = async () => {
 ${f.diff}
 \`\`\`
 `;
+      console.log(`[ADD DIFF] ${f.file}`);
     }
   }
 
