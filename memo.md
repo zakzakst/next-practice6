@@ -79,3 +79,4 @@ Prompt → Agent → Workflow
     - イメージ：`.github/prompts/merge-review`配下に`coach.prompt.md`とかが入る
   - 複数作業を連携する方法を調べる
     - diffのレビューとかはskillsに入れてworkflowでは各作業の呼び出しをするみたいなファイル構成が良かったりする？
+    - ⇒ workflowというファイルないっぽい、一度ファイル構成のルール見直す（https://github.com/github/awesome-copilot）
