@@ -80,3 +80,9 @@ Prompt → Agent → Workflow
   - 複数作業を連携する方法を調べる
     - diffのレビューとかはskillsに入れてworkflowでは各作業の呼び出しをするみたいなファイル構成が良かったりする？
     - ⇒ workflowというファイルないっぽい、一度ファイル構成のルール見直す（https://github.com/github/awesome-copilot）
+  - searcherのagent作る
+  - balancerの指示に文言のトーン&マナーに関する記述も入れる
+  - hooksについて調べる
+    - https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-hooks
+  - agent skillについて調べる
+    - https://agentskills.io/home
