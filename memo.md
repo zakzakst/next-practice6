@@ -6,6 +6,10 @@
 
 ### react-pdf
 
+### lodash
+
+- https://www.npmjs.com/package/lodash
+
 #### PDFファイル表示
 
 - https://github.com/wojtekmaj/react-pdf/blob/v9.x/packages/react-pdf/README.md
