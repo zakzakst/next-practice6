@@ -96,3 +96,6 @@ Prompt → Agent → Workflow
     - https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-hooks
   - agent skillについて調べる
     - https://agentskills.io/home
+
+copilot チャット > 設定アイコン > MCPサーバー / Hooks
+⇒VS Code拡張機能との連携もあるっぽい：試す
