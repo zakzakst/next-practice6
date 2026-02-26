@@ -99,3 +99,5 @@ Prompt → Agent → Workflow
 
 copilot チャット > 設定アイコン > MCPサーバー / Hooks
 ⇒VS Code拡張機能との連携もあるっぽい：試す
+
+- https://qiita.com/youtoy/items/1d46724e40ab96607b18
