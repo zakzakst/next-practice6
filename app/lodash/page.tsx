@@ -1,4 +1,5 @@
-import { Parts } from "./parts/Parts1";
+// import { Parts } from "./parts/Parts5";
+import { Parts } from "./parts/Parts6";
 
 const Page = () => {
   return (
