@@ -4,6 +4,10 @@
 - https://qiita.com/nemutas/items/d2d738749184a7a42f1d
 - https://ics.media/entry/250410/
 
+### Compound Component Pattern
+
+- https://note.com/dev_onecareer/n/n36c37a2b777d
+
 ### react-pdf
 
 ### lodash
