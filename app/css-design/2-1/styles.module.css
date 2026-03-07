@@ -1,0 +1,216 @@
+/* ----- 基本的なグラデーションを作成する ----- */
+.gradientBox {
+  aspect-ratio: 3/2;
+}
+.linearGradient {
+  background-image: linear-gradient(45deg, blue, aqua);
+}
+.radialGradient {
+  background-image: radial-gradient(aqua 0%, blue 100%);
+}
+.conicGradient {
+  background-image: conic-gradient(blue, aqua);
+}
+
+/* ----- ハードストップの例 ----- */
+/* 左上と右上に斜めのカットを入れる */
+.linearStop {
+  background-image: linear-gradient(
+    30deg,
+    navy 15%,
+    skyblue 15%,
+    skyblue 85%,
+    navy 85%
+  );
+}
+/* くっきりとした円を描画する */
+.radialStop {
+  background-image: radial-gradient(circle, navy 25%, skyblue 25%);
+}
+/* 色の開始位置を指定して円グラフ風のようにカラーを切り替える */
+.conicStop {
+  background-image: conic-gradient(
+    navy 0deg 120deg,
+    skyblue 120deg 210deg,
+    plum 210deg
+  );
+}
+
+/* ----- 複雑な柄の例 ----- */
+/* 斜めストライプ */
+.gradientStripe {
+  background-image: repeating-linear-gradient(
+    60deg,
+    pink 0 6px,
+    transparent 6px 12px
+  );
+}
+
+/* 波紋 */
+.gradientRipples {
+  background-image: repeating-radial-gradient(
+    circle,
+    skyblue 0 0.25em,
+    transparent 0.25em 1em
+  );
+  background-position: center;
+}
+
+/* ドット柄 */
+.gradientDot {
+  background-image: radial-gradient(circle, skyblue 40%, transparent 40%);
+  background-size: 1em 1em;
+  background-position: center;
+}
+
+/* 市松模様 */
+.gradientIchimatsu {
+  --ichimatsu-color: forestgreen;
+
+  /* 4分の1ずつカラーを切り替える */
+  background-image: conic-gradient(
+    var(--ichimatsu-color) 25%,
+    transparent 0% 50%,
+    var(--ichimatsu-color) 50% 75%,
+    transparent 75%
+  );
+  background-size: 40px 40px;
+}
+
+/* チェック柄 */
+.gradientCheckered {
+  --check-color: rgb(120 200 200 / 0.4);
+  /* 横ストライプと縦ストライプを作るグラデーションを２つ重ねる */
+  background-image:
+    linear-gradient(transparent 0 50%, var(--check-color) 50% 100%),
+    linear-gradient(90deg, transparent 0 50%, var(--check-color) 50% 100%);
+  background-size: 20px 20px;
+  background-position: 5px 5px;
+}
+
+/* ----- 見出しの装飾の例 ----- */
+/* 下線をグラデーションカラーにする */
+.hGrad01 {
+  padding-bottom: 8px;
+  position: relative;
+}
+.hGrad01::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #4daeff, #96ffba 100%);
+  border-radius: 6px;
+}
+
+/* テキスト左側へ２色の縦積みブロックを配置 */
+.hGrad02 {
+  position: relative;
+  padding-left: 20px;
+}
+.hGrad02::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 12px;
+  height: 100%;
+  background: linear-gradient(#52acff 0 50%, #ff8bf9 50% 100%);
+  border-radius: 1px;
+}
+
+/* ----- マーカー表現の例 ----- */
+.marker01 {
+  padding-bottom: 0.125em;
+  padding-inline: 1px;
+
+  /* 下から上へ、0.5em（文字の半分程度）まで色をつける */
+  background: linear-gradient(0deg, #ffdd76 0.5em, transparent 0.5em);
+}
+
+.marker02 {
+  padding-bottom: 0.125em;
+  padding-inline: 1px;
+
+  /* 斜めのストライプ柄 */
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #ffdd76 0 2px,
+    transparent 2px 4px
+  );
+
+  /* background-repeat はオフ */
+  background-repeat: no-repeat;
+
+  /* 位置・高さの調整 */
+  background-position: left bottom;
+  background-size: 100% 0.875em;
+}
+
+/* ----- 画像とグラデーションを組み合わせた活用例 ----- */
+
+.imgFrame {
+  aspect-ratio: 16/9;
+  display: grid;
+}
+.imgFrame > * {
+  grid-area: 1 / 1;
+}
+.imgFrame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* キャプション背景に下から黒くなるグラデーションを敷く */
+.overlayCaption {
+  font-size: 0.9em;
+  align-self: end; /* 下揃え */
+  padding: 1em 0.75em 0.75em;
+  text-align: center;
+  color: #fff;
+
+  /* 下から上(0deg)へ。黒から透明へフェード */
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.8) 0.5em, transparent 100%);
+}
+
+.layerBlackFade {
+  /* 左から右へ黒フェード */
+  background: linear-gradient(90deg, rgb(0 0 0) 1em, transparent 80%);
+}
+
+/* 画像の上に表示するテキスト */
+.layerText {
+  align-self: center;
+  color: #fff;
+  padding: 1.5em;
+  z-index: 0;
+}
+.layerText > div {
+  font-size: 2em;
+}
+.layerText > p {
+  font-size: 0.9em;
+}
+
+/* ドットフィルターの例 */
+.layerBlackDot {
+  /* 後ろのカラー開始位置を0%にすると簡単にハードストップできます。 */
+  background-image: radial-gradient(
+    circle,
+    rgb(0 0 0 / 50%) 1px,
+    rgb(0 0 0 / 10%) 0%
+  );
+  background-size: 3px 3px;
+}
+/* .layerTextのスタイルは先ほどと同じのため省略 */
+.layerText {
+}
+
+/* 追加でシャドウ */
+.layerBlackDot + .layerText {
+  text-shadow: 0 0 1em rgb(0 0 0 / 50%);
+}
