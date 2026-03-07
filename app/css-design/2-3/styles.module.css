@@ -1,0 +1,233 @@
+/* ----- 円・四角形の単純な図形で切り抜く ----- */
+.clipBox {
+  aspect-ratio: 1/1;
+  background: linear-gradient(-45deg, blue, violet);
+}
+
+/* 円形 */
+.clipCircle {
+  /* 半径50%の円で切り抜く */
+  clip-path: circle(50%);
+}
+/* 楕円 */
+.clipEllipse {
+  /* 横幅の50%、縦幅の40%を半径とする楕円 */
+  clip-path: ellipse(50% 40%);
+}
+/* 中心点を左下にずらして扇形のようにする */
+.clipFan {
+  /* 半径90%、中心位置(at)を左下(0% 100%)に指定 */
+  clip-path: circle(90% at 0% 100%);
+}
+/* 角丸四角形（inset） */
+.clipRoundedRect {
+  /* 上下左右から4%内側へ切り抜き、角を20px丸める */
+  clip-path: inset(4% round 20px);
+}
+
+/* ----- polygonを使って複雑な図形で切り抜く ----- */
+/* 三角形 */
+.clipTriangle {
+  /* 上辺の中央、左下、右下 の3点を結ぶ */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+/* 平行四辺形 */
+.clipParallelogram {
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+/* パスの線上に座標を合流させると中抜きの表現も可能 */
+.clipFrame {
+  clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    25% 100%,
+    25% 25%,
+    75% 25%,
+    75% 75%,
+    25% 75%,
+    25% 100%,
+    100% 100%,
+    100% 0%
+  );
+}
+.clipHourglass {
+  /*  パスを交差させる（砂時計型） */
+  clip-path: polygon(100% 0, 0 0, 100% 100%, 0% 100%);
+}
+
+/* ----- evenoddを用いた表現の例 ----- */
+/* デフォルト（nonzero）: 全体が塗りつぶされる */
+.clipStar {
+  /* 上→右下→左上→右上→左下の順に星を描く */
+  clip-path: polygon(50% 0%, 80% 100%, 0% 38%, 100% 38%, 20% 100%);
+}
+
+/* evenodd: 交差した部分が中抜きになる */
+.clipStarEvenodd {
+  clip-path: polygon(evenodd, 50% 0%, 80% 100%, 0% 38%, 100% 38%, 20% 100%);
+}
+
+/* ----- グラデーションマスクの例 ----- */
+.maskBox {
+  aspect-ratio: 3/2;
+}
+.maskBox > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* グラデーションマスク */
+.gradientMask {
+  /* 黒(不透明)から透明へ向かうグラデーションでマスク */
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+/* ハードストップマスク */
+.gradientStopMask {
+  /* 透明と不透明を明確に切り替えることで、縞模様のような切り抜きも可能 */
+  mask-image: linear-gradient(
+    45deg,
+    transparent,
+    black 10%,
+    transparent 10% 12%,
+    black 12% 24%,
+    transparent 24% 27%,
+    black 27% 95%,
+    transparent 95%
+  );
+}
+
+/* ----- SVGでマスクをした例 ----- */
+.maskSvg {
+  aspect-ratio: 1/1;
+
+  /* SVGをData URIとして埋め込み */
+  --mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 200 200"><path class="st0" d="M99.3,14.9c22.8-0.3,46.4,11.8,63.3,30.1c17.1,18.3,27.5,43,26.6,67c-1.1,24.1-13.6,47.8-32,60 c-18.3,12.2-42.6,13-68,13.1c-25.5,0.2-52.3-0.3-65.9-13.9c-13.7-13.6-14.2-40.4-10.7-64.4c3.8-24,11.7-45.1,26.7-62.1 C54.3,27.8,76.4,15.1,99.3,14.9z"/></svg>');
+
+  mask-image: var(--mask);
+  mask-size: contain;
+
+  /* マスク画像の繰り返しを防ぐ */
+  mask-repeat: no-repeat;
+}
+
+/* ----- セクションの境界線をclip-pathで切り取る ----- */
+.section {
+  position: relative;
+  min-height: 25rem;
+  padding: 2em;
+}
+.section__content {
+  position: relative;
+  max-width: 800px;
+  margin-inline: auto;
+}
+.section__bg {
+  position: absolute;
+  inset: 0;
+}
+.section__bg > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 画像を少し暗くして文字を読みやすくする */
+.section__bg::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background-color: rgb(0 0 0 / 50%);
+}
+.section__bg + .section__content {
+  color: #fff;
+}
+
+/* ここからクリップの設定 */
+.clipSection1,
+.clipSection2 {
+  --clip-height: 80px; /* 切り抜く高さを変数で管理 */
+}
+
+/* セクション1 */
+.clipSection1 {
+  /* セクション2が下から詰めてくるので、その分の余白を確保する */
+  padding-bottom: calc(2em + var(--clip-height));
+  background: #eee;
+  background-image: radial-gradient(circle, #ddd 2px, transparent 0%);
+  background-size: 20px 20px;
+}
+
+/* セクション2 */
+.clipSection2 {
+  color: #fff;
+
+  /* 上部を斜めにクリップする */
+  clip-path: polygon(0 var(--clip-height), 100% 0, 100% 100%, 0 100%);
+
+  /* クリップした高さ分、上を詰める（ネガティブマージン） */
+  margin-top: calc(-1 * var(--clip-height));
+
+  /* クリップされて内容が切れないよう、余白を多めに確保 */
+  padding-top: calc(2em + var(--clip-height));
+}
+
+/* ----- 波形SVGでマスクする例 ----- */
+/* svgマスクによるセクション区切り */
+.maskSection {
+  position: relative;
+  overflow: hidden;
+
+  /*
+    2つのマスクレイヤーを指定:
+    1. SVGの波形画像
+    2. 全面を塗りつぶすグラデーション（色はなんでもOK）
+  */
+  --mask:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 100 10" xml:space="preserve" fill="%23fff"><path d="M100 6C89.3 3.3 82.7 9 70 9S48.4 3 38 3 24.5 6 17 6C7.4 6 0 0 0 0v10h100V6z"/></svg>'),
+    linear-gradient(#fff, #fff);
+
+  mask-image: var(--mask);
+  mask-repeat: no-repeat;
+
+  /* mask svgを最下部に配置。1px程度の隙間対策で少しだけ下にずらす調整を入れています */
+  mask-position: 0% calc(100% + 2px);
+  mask-size: calc(100% + 2px) auto;
+
+  /* 重要: excludeを指定して、2つのマスクが重ならない部分（波形の下側）を切り抜く */
+  mask-composite: exclude;
+
+  /* svg が 100:10 の比率なので、アスペクト比に合わせて余白を確保 */
+  padding-bottom: 10%;
+}
+
+.maskSection + .section {
+  margin-top: 0;
+}
+
+/* ----- テキストによるクリッピング ----- */
+.clipText {
+  /* 背景をテキストの形で切り抜く */
+  background-clip: text;
+
+  /* 重要: 文字色を透明にして、背面の背景が見えるようにする */
+  color: transparent;
+
+  /* 以下、レイアウト用スタイル */
+  width: fit-content;
+  font-size: clamp(40px, 20vw, 100px);
+  font-weight: 900;
+  line-height: 1.2;
+  display: grid;
+  justify-items: center;
+  margin-inline: auto;
+}
+
+.clipTextGradient {
+  background-image: linear-gradient(45deg, blue, violet, aqua);
+}
+
+.clipTextImg {
+  background-image: url("https://placehold.jp/1200x800.png");
+  background-size: cover;
+}
