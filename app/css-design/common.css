@@ -1,0 +1,168 @@
+/* --------------------------------------
+	reset css
+-------------------------------------- */
+
+/* border-box を全要素にセット */
+:where(*, ::before, ::after) {
+  box-sizing: border-box;
+}
+
+/* 全要素のマージンをリセット */
+* {
+  margin: 0;
+}
+
+/* 親要素をはみ出さないようにする + 隙間ができないようにする */
+:where(img, video) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* iframe */
+:where(iframe) {
+  display: block;
+  border: none;
+}
+
+/* テキストのオーバーフローを回避 */
+:where(p, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: break-word;
+}
+
+/* フォーム要素のタイポグラフィをリセット */
+:where(input, button, textarea, select) {
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+}
+
+/* テキストエリアの水平リサイズを無効に */
+:where(textarea) {
+  resize: vertical;
+}
+
+/* カーソル セット */
+:where(button, label, select, summary) {
+  cursor: pointer;
+}
+
+/* --------------------------------------
+	共通デザイントークン
+-------------------------------------- */
+:root {
+  /*  フォントサイズ（流体タイポグラフィ）  */
+  /* 400px ~ 1200px で 1rem ~ 1.4rem */
+  --font-size--base: clamp(1rem, 0.8rem + 0.8vw, 1.4rem);
+
+  --font-size--xs: calc(var(--font-size--base) * 0.8);
+  --font-size--sm: calc(var(--font-size--base) * 0.9);
+  --font-size--md: calc(var(--font-size--base) * 1.1);
+  --font-size--lg: calc(var(--font-size--base) * 1.25);
+  --font-size--xl: calc(var(--font-size--base) * 1.5);
+  --font-size--2xl: calc(var(--font-size--base) * 2);
+  --font-size--3xl: calc(var(--font-size--base) * 2.5);
+
+  /*  余白  */
+  --space: calc(var(--font-size--base) * 0.25); /* = 0.25rem ~ ≒ 4px ~ */
+
+  --space--1: var(--space); /* 4px ~ */
+  --space--2: calc(var(--space) * 2); /* 8px ~ */
+  --space--4: calc(var(--space) * 4); /* 16px ~ */
+  --space--6: calc(var(--space) * 6); /* 24px ~ */
+  --space--8: calc(var(--space) * 8); /* 32px ~ */
+  --space--12: calc(var(--space) * 12); /* 48px ~ */
+  --space--16: calc(var(--space) * 16); /* 64px ~ */
+
+  /*  カラートークン  */
+  --color--text: #1f2937;
+  --color--bg: #fff;
+  --color--border: #d4d8e0;
+  --color--btn: #2a65ff;
+  --color--focus: #2563eb;
+
+  /*  ボーダー半径  */
+  --radius--sm: 4px;
+  --radius--md: 8px;
+  --radius--lg: 16px;
+  --radius--full: 9999px;
+
+  /*  シャドウ  */
+  --shadow-color: rgb(0 0 0 / 0.15);
+  --shadow--sm: 1px 3px 6px var(--shadow-color);
+  --shadow--md: 2px 8px 16px var(--shadow-color);
+  --shadow--lg: 3px 13px 26px var(--shadow-color);
+  --shadow--xl: 5px 21px 42px var(--shadow-color);
+}
+
+/* --------------------------------------
+  HTML ベーススタイルをセット
+-------------------------------------- */
+body {
+  color: var(--color--text);
+  background-color: var(--color--bg);
+  font-size: var(--font-size--base);
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+  line-height: 1.5;
+}
+h1 {
+  font-size: var(--font-size--2xl);
+}
+h2 {
+  font-size: var(--font-size--xl);
+}
+h3 {
+  font-size: var(--font-size--lg);
+}
+h4 {
+  font-size: var(--font-size--md);
+}
+
+/* フォーカスリングの可視化 */
+/* :focus-visible {
+  outline: 2px solid var(--color--focus);
+  outline-offset: 2px;
+} */
+
+/* --------------------------------------
+	デモ用のユーティリティクラス (本文でも使用）
+-------------------------------------- */
+._box_ {
+  padding: var(--space--4);
+  border: solid 1px;
+  border-radius: 4px;
+}
+._flow_ > * + * {
+  margin-block-start: 1.5em;
+}
+
+/* --------------------------------------
+	デモ用のユーティリティクラス
+-------------------------------------- */
+._demo_ {
+  max-inline-size: var(--content-size, 1200px);
+  margin-inline: auto;
+  padding: var(--space--8);
+}
+._demo_ hr {
+  border-style: dashed;
+  border-color: var(--color--border);
+}
+._spacer_ {
+  block-size: var(--space--8);
+}
+._demo_cluster_ {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+}
+._demo_grid_ {
+  --column-size: 300px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, var(--column-size)), 1fr)
+  );
+  gap: 1em;
+}
