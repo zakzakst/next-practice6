@@ -1,0 +1,254 @@
+/* ----- ブロークンレイアウト 共通 ----- */
+.section {
+  max-inline-size: var(--content-size, 1200px);
+  margin-inline: auto;
+  padding: var(--space--6);
+}
+
+.imgFrame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----- ブロークンレイアウト 01 ----- */
+.broken01 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space--8);
+}
+
+/* コンテンツ */
+.broken01__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space--4);
+}
+
+.broken01__content > h2 {
+  font-size: var(--font-size--2xl);
+  font-weight: 200;
+  letter-spacing: 0.025em;
+}
+
+.broken01__content > p {
+  font-size: var(--font-size--sm);
+}
+
+/* 画像をグリッドレイアウトで配置 */
+.broken01__images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: var(--space--2);
+  flex-shrink: 0;
+  width: 80vw;
+  min-height: max(50vw, 40vh);
+  margin-left: auto;
+}
+
+.broken01__img1 {
+  grid-column: span 2 / -1;
+  grid-row: 1 / -2;
+}
+
+.broken01__img2 {
+  grid-column: 1 / span 2;
+  grid-row: 2 / -1;
+}
+
+/* 画面が広い時は .broken01__content と .broken01__images が横並び */
+@media (min-width: 800px) {
+  .broken01 {
+    flex-direction: row;
+  }
+
+  /*  親に対する自身の配置を上下中央に寄せる  */
+  .broken01__content {
+    align-self: center;
+  }
+
+  .broken01__images {
+    width: 40vw;
+  }
+}
+
+.imgFrame {
+  overflow: hidden;
+}
+
+.imgFrame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----- ブロークンレイアウト 02 ----- */
+.broken02 {
+  display: flex;
+  flex-direction: column;
+}
+
+.broken02__title {
+  font-size: var(--font-size--2xl);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+}
+
+.broken02__subtext {
+  margin-top: 1.5em;
+  font-size: var(--font-size--sm);
+}
+
+.broken02__img1 {
+  box-shadow: var(--shadow--md);
+
+  /*  小さい画面サイズでの配置  */
+  aspect-ratio: 16 / 9;
+  width: 45%;
+  margin-top: 1.5em;
+  margin-left: auto;
+}
+
+.broken02__img2 {
+  box-shadow: var(--shadow--lg);
+
+  /*  小さい画面サイズでの配置  */
+  aspect-ratio: 3 / 2;
+  width: 70%;
+  margin-top: -4vw;
+}
+
+/* 画面が広い時 */
+@media (min-width: 800px) {
+  .broken02 {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
+    height: max(20em, 80vh);
+  }
+
+  .broken02 > .imgFrame {
+    width: auto;
+    margin: 0;
+    aspect-ratio: unset;
+  }
+
+  .broken02__img1 {
+    grid-column: span 10 / -1;
+    grid-row: 1 / span 9;
+  }
+
+  .broken02__img2 {
+    grid-column: 1 / span 15;
+    grid-row: 8 / -1;
+  }
+
+  .broken02__title {
+    grid-column: 2 / span 12;
+    grid-row: 2 / span 5;
+    align-self: center;
+  }
+
+  .broken02__subtext {
+    grid-column: span 8 / -1;
+    grid-row: span 14 / -1;
+    place-self: end;
+  }
+}
+
+/* ----- ブロークンレイアウト 03 ----- */
+.broken03 {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(24, 1fr);
+  height: 100svh;
+  padding: 0.75em;
+}
+
+.broken03__img {
+  grid-column: 1 / span 6;
+  grid-row: 1 / -1;
+  z-index: 0;
+  position: relative;
+}
+
+.broken03__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px) grayscale(0.4);
+}
+
+.broken03__title {
+  grid-column: 3 / -3;
+  grid-row: 4 / -4;
+  align-self: center;
+  z-index: 1;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: min(18vw, 16.6vh);
+  /* 大きい画面サイズでは 24マス分の4つ分の高さ */
+  text-shadow: -0.5em 0 4em var(--color--bg);
+}
+
+.broken03__title > h2 {
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: min(16vw, 16.6vh);
+}
+
+.broken03__subtext {
+  grid-column: 10 / -2;
+  grid-row: span 3 / -2;
+  place-self: end;
+  max-width: 20em;
+  font-size: 1em;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* 画面が小さい時 */
+@media (max-width: 500px) {
+  .broken03__title {
+    grid-column: 2 / -2;
+    grid-row: 2 / -6;
+  }
+}
+
+/* ----- 画像回り込みレイアウト ----- */
+
+.shapeOutsideContent {
+  display: flow-root;
+}
+
+.shapeOutsideContent > .imgFrame {
+  /* 変形回り込み */
+  shape-outside: var(--clip-path, unset);
+  clip-path: var(--clip-path, unset);
+}
+
+.imgFrameCircle {
+  float: left;
+  width: min(30vw, 300px);
+  aspect-ratio: 1 / 1;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+
+  /* 円形に回り込み */
+  --clip-path: circle(50%);
+}
+
+.imgFramePolygon {
+  float: right;
+  width: min(30vw, 300px);
+  aspect-ratio: 1 / 1;
+  margin-left: 1.5em;
+  margin-bottom: 1.5em;
+
+  /* 多角形に回り込み */
+  --clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%);
+}
