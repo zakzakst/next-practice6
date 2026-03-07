@@ -1,0 +1,129 @@
+/* ----- 1色から明るい色と暗い色を作成する例 ----- */
+.module {
+  /* サイトのプライマリーカラー（基準となる色） */
+  --color--primary: hsl(210 80% 50%);
+
+  /* white を 50% 混ぜて、明るいバリエーションを作る */
+  --color--primary-light: color-mix(in srgb, var(--color--primary), white 50%);
+
+  /* black を 50% 混ぜて、暗いバリエーションを作る */
+  --color--primary-dark: color-mix(in srgb, var(--color--primary), black 50%);
+}
+.badge {
+  display: inline-flex;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+}
+.badgePrimary {
+  background: var(--color--primary);
+  color: white;
+}
+.badgePrimaryLight {
+  background: var(--color--primary-light);
+}
+.badgePrimaryDark {
+  background: var(--color--primary-dark);
+  color: white;
+}
+
+/* ----- ボタンのホバーエフェクトの例 ----- */
+.buttons {
+  display: flex;
+  gap: 0.5em;
+}
+.btn {
+  /* ボタンのベースカラー（デフォルトはプライマリーカラー） */
+  --btn-color: var(--color--primary);
+
+  display: inline-flex;
+  background-color: var(--btn-color);
+  color: #fff;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* ホバー時の共通設定 */
+.btn:hover {
+  /* ボタンカラーに黒を20%混ぜて、少し暗くする */
+  background-color: color-mix(in srgb, var(--btn-color), black 20%);
+}
+
+/* バリエーションはボタンカラーを変えるだけ */
+.btnDanger {
+  --btn-color: hsl(10 80% 50%);
+}
+.btnCancel {
+  --btn-color: hsl(200 8% 50%);
+}
+
+/* ----- 通知ボックスのカラーバリエーション ----- */
+.module {
+  /* ベースとなる背景色と文字色 */
+  --color--bg: #fff;
+  --color--text: #333;
+}
+
+.colorBox {
+  /*  指定漏れのための初期値定義  */
+  --keycolor: currentColor;
+
+  /* カラーリングの自動生成 */
+  color: color-mix(in srgb, currentColor, var(--keycolor) 20%);
+  background-color: color-mix(in srgb, transparent, var(--keycolor) 5%);
+  --shadow-color: color-mix(in srgb, rgb(0 0 0 / 0.1), var(--keycolor) 20%);
+  --border-color: color-mix(in srgb, transparent, var(--keycolor) 25%);
+
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 1em;
+  border-radius: 4px;
+  border: solid 2px var(--border-color);
+  box-shadow: 2px 4px 20px -8px var(--shadow-color);
+}
+
+.colorBox__icon {
+  flex-shrink: 0;
+  width: 1.25em;
+  aspect-ratio: 1/1;
+  background-color: var(--keycolor);
+
+  /* アイコンを mask で描画することで、CSSでカラー管理ができる */
+  mask: var(--icon) no-repeat center / contain;
+}
+
+/* バリエーションごとの定義は「色」と「アイコン」を変えるだけ */
+.colorBoxAlert {
+  --keycolor: rgb(240 40 40);
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M148,200a20,20,0,1,1-20-20A20,20,0,0,1,148,200Zm-20-40a12,12,0,0,0,12-12V48a12,12,0,0,0-24,0V148A12,12,0,0,0,128,160Z"></path></svg>');
+}
+
+.colorBoxCheck {
+  --keycolor: rgb(50 180 60);
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path></svg>');
+}
+.colorBoxHelp {
+  --keycolor: rgb(40 100 220);
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M196,96c0,29.47-24.21,54.05-56,59.06V156a12,12,0,0,1-24,0V144a12,12,0,0,1,12-12c24.26,0,44-16.15,44-36s-19.74-36-44-36S84,76.15,84,96a12,12,0,0,1-24,0c0-33.08,30.5-60,68-60S196,62.92,196,96Zm-68,92a20,20,0,1,0,20,20A20,20,0,0,0,128,188Z"></path></svg>');
+}
+
+/* ----- 相対色構文 ----- */
+
+.module {
+  /* 明度を上げて、明るいバリエーションを作る */
+  --color--from-primary-light: hsl(from var(--color--primary) h s calc(l + 25));
+
+  /* 明度を下げて、暗いバリエーションを作る */
+  --color--from-primary-dark: hsl(from var(--color--primary) h s calc(l - 25));
+}
+.badgeFromPrimaryLight {
+  background: var(--color--from-primary-light);
+}
+.badgeFromPrimaryDark {
+  background: var(--color--from-primary-dark);
+  color: white;
+}
