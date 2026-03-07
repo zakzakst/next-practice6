@@ -1,0 +1,172 @@
+/* 要素を2列に並べるカラムレイアウトの実装 */
+
+/* grid */
+.grid2cols {
+  display: grid;
+  gap: var(--space--4);
+  grid-template-columns: 1fr 1fr;
+}
+
+/* flex */
+.flex2cols {
+  --gap: var(--space--4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+.flex2cols > * {
+  flex-basis: calc(50% - var(--gap));
+  flex-grow: 1;
+}
+
+/* カラム比率が2:1で２列に並ぶレイアウトの実装 */
+
+/* grid */
+.grid2_1 {
+  display: grid;
+  gap: var(--space--4);
+  grid-template-columns: 2fr 1fr;
+}
+
+/* flex */
+.flex2_1 {
+  --gap: var(--space--4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+.flex2_1 > :nth-child(2n-1) {
+  flex-basis: calc(66.66% - var(--gap));
+  flex-grow: 1;
+}
+.flex2_1 > :nth-child(2n) {
+  flex-basis: calc(33.33% - var(--gap));
+  flex-grow: 1;
+}
+
+/* 複数要素をセンター寄せする記述の例 */
+
+/* grid */
+.gridCenter {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  aspect-ratio: 16/9;
+}
+
+/* flex */
+.flexCenter {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  aspect-ratio: 16/9;
+}
+
+/* ----- 画像の上にカラーレイヤーとコンテンツを重ねて表示する ----- */
+
+/* 画像に重ねる要素の共通スタイリング */
+.layeredBox__content {
+  color: #fff;
+  font-size: var(--font-size--lg);
+  padding: var(--space--2);
+  border-bottom: solid 1px;
+}
+.layeredBox__blacklayer {
+  background: rgb(0 0 0 / 0.5);
+}
+
+/* gridでの実装 */
+.layeredBoxGrid {
+  display: grid;
+}
+.layeredBoxGrid > * {
+  grid-area: 1 / 1;
+}
+.layeredBoxGrid > .layeredBox__content {
+  place-self: center;
+}
+
+/* position: absolute での実装 */
+.layeredBoxAbsolute {
+  position: relative;
+}
+.layeredBoxAbsolute > .layeredBox__blacklayer {
+  position: absolute;
+  inset: 0;
+}
+.layeredBoxAbsolute > .layeredBox__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* ----- 4列×4行のグリッドに要素を配置する ----- */
+.grid4x4 {
+  display: grid;
+  border: dashed 1px;
+  gap: var(--space--2);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  min-height: 400px;
+  padding: 1px;
+}
+.boxA {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 4;
+}
+.boxB {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+.boxC {
+  grid-column: 3;
+  grid-row: 3;
+}
+.boxD {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+/* ----- 名前付きグリッドエリアの例 ----- */
+.areaGrid {
+  display: grid;
+  border: dashed 1px;
+  gap: var(--space--2);
+  max-width: 1200px;
+  min-height: 100vh;
+  margin-inline: auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "aside"
+    "footer";
+  grid-template-rows: auto 1fr auto auto;
+  padding: 1px;
+}
+.header {
+  grid-area: header;
+}
+.main {
+  grid-area: main;
+}
+.aside {
+  grid-area: aside;
+}
+.footer {
+  grid-area: footer;
+}
+/* 広いサイズ */
+@media (min-width: 768px) {
+  .areaGrid {
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
+    grid-template-columns: 1fr 240px;
+    grid-template-rows: auto 1fr auto;
+  }
+}
