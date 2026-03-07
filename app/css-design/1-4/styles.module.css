@@ -1,0 +1,89 @@
+/* コンテナ定義 */
+.container {
+  container-type: inline-size;
+}
+
+/* cta カード */
+.ctaCard {
+  display: grid;
+  justify-items: center;
+  gap: var(--space--6);
+  padding: var(--space--8) var(--space--4);
+  background-color: var(--color--bg);
+  border: 2px solid var(--color--btn);
+  box-shadow: var(--shadow--md);
+  border-radius: 12px;
+}
+.ctaCard__content {
+  flex: 1;
+  display: grid;
+  text-align: center;
+  gap: 0.5em;
+}
+.ctaCard__icon {
+  font-size: 2em;
+  line-height: 1;
+  margin-block: -0.25em;
+}
+.ctaCard__title {
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color--text);
+}
+.ctaCard__text {
+  opacity: 0.8;
+  font-size: 0.95em;
+}
+.ctaCard__button {
+  color: #fff;
+  background-color: var(--color--btn);
+  padding: 0.75em 1.5em;
+  font-weight: 700;
+  border-radius: 8px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+/* コンテナクエリ：600px以上で横並び */
+@container (min-width: 600px) {
+  .ctaCard {
+    display: flex;
+    align-items: center;
+    padding: var(--space--8);
+    font-size: var(--font-size--md);
+  }
+  .ctaCard__content {
+    text-align: revert;
+  }
+}
+
+/* コンテナクエリを利用したCTAバナー */
+.ctaBanner {
+  container-type: inline-size;
+  position: relative;
+  color: #fff;
+  background: url("https://placehold.jp/1200x800.png") no-repeat center / cover;
+}
+.ctaBanner::before {
+  position: absolute;
+  inset: 0;
+  background: rgba(0 0 0 / 50%);
+  content: "";
+}
+.ctaBanner__content {
+  position: relative;
+  display: grid;
+  gap: 4cqw;
+  padding: 8cqw;
+}
+.ctaBanner__title {
+  font-size: min(16cqw, 120px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.025em;
+}
+.ctaBanner__text {
+  font-size: clamp(12px, 5cqw, 24px);
+  opacity: 0.8;
+}
