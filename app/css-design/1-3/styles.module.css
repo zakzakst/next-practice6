@@ -1,0 +1,139 @@
+/* サイドバーがあるレイアウト */
+.contentArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space--6);
+}
+.sidebar {
+  /* デモ用に見やすくする */
+  background: repeating-linear-gradient(
+    135deg,
+    #eee,
+    #eee 3px,
+    #fff 3px,
+    #fff 6px
+  );
+  padding: 1em;
+}
+
+/* 大きい画面サイズでのレイアウト */
+@media (min-width: 768px) {
+  .contentArea {
+    flex-direction: row;
+  }
+  .mainArea {
+    flex: 1;
+  }
+  .sidebar {
+    width: 300px;
+  }
+}
+
+/* カード共通 */
+.card {
+  border-radius: var(--radius--md);
+  box-shadow: var(--shadow--lg);
+  overflow: hidden;
+}
+.card__content {
+  padding: var(--space--6);
+}
+.card__content > h3 {
+  font-size: var(--font-size--md);
+}
+.card__content > p {
+  font-size: var(--font-size--sm);
+  margin-top: var(--space--2);
+}
+.card__image {
+  aspect-ratio: 16 / 9;
+  align-self: stretch;
+}
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* メディアクエリでレイアウトを切り替えるカード */
+.cardMediaquery {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 大きい画面サイズ */
+@media (min-width: 768px) {
+  .cardMediaquery {
+    flex-direction: row;
+  }
+  .cardMediaquery .card__image {
+    flex-basis: 40%;
+  }
+  .cardMediaquery .card__content {
+    flex-basis: 60%;
+    align-self: center;
+  }
+}
+
+/* Flexboxを用いたレイアウト自動切り替えの汎用クラス */
+.switchColumns {
+  --side-width: 240px; /* サイドコンテンツの幅 */
+  --main-width: 50%; /* このサイズが折り返しポイントの基準となる */
+  display: flex;
+  flex-wrap: wrap;
+}
+/* 固定幅で表示するサイド要素 */
+.switchColumns__side {
+  flex-basis: var(--side-width);
+  flex-grow: 1;
+}
+/* もう片方のメインエリア */
+.switchColumns__main {
+  flex-basis: min(100%, var(--main-width));
+  flex-grow: 999999; /* 大きな数値を指定 */
+}
+
+/* カードのスタイル */
+.card.switchColumns {
+  --side-width: 40%;
+  --main-width: 20em;
+}
+
+/* Gridの自動段組み */
+.gridAutoFill {
+  display: grid;
+  gap: var(--space--4);
+
+  /* 自動段組み */
+  --column-size: 240px;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, var(--column-size)), 1fr)
+  );
+}
+
+/* Gridの自動段組み (auto-fit版) */
+.gridAutoFit {
+  display: grid;
+  gap: var(--space--4);
+
+  /* 自動段組み */
+  --column-size: 240px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--column-size)), 1fr)
+  );
+}
+
+/* ----- switcher ----- */
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  --threshold: 30rem; /* 横並びを維持する幅（親のサイズを指定します） */
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--threshold) - 100%) * 9999);
+}
