@@ -1,0 +1,99 @@
+/* 記事リストにsubgridを導入する例 */
+
+/* 親グリッド：カード全体を並べるコンテナ */
+.subgridCards {
+  display: grid;
+  gap: var(--space--6);
+
+  /*  自動段組み  */
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+}
+
+/* 子グリッド：各カードがsubgridを使用 */
+.subgridCard {
+  display: grid;
+
+  /* 4行分の行領域を確保（画像・タイトル・本文・メタ情報） */
+  grid-row: span 4;
+
+  /* 親グリッドの行ラインを継承し、カード間で各行の高さを揃える */
+  grid-template-rows: subgrid;
+
+  gap: var(--space--4);
+  padding: var(--space--4);
+  box-shadow: var(--shadow--sm);
+  border-radius: 8px;
+  background: #f8f8f8;
+  line-height: 1.4;
+}
+.subgridCard__media {
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.subgridCard__media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.subgridCard__title {
+  font-size: 1em;
+  align-self: center;
+}
+.subgridCard__text {
+  font-size: var(--font-size--sm);
+}
+.subgridCard__meta {
+  font-size: var(--font-size--xs);
+  border-top: solid 1px;
+  padding-top: var(--space--4);
+  opacity: 0.9;
+}
+
+/* ----- subgridをネストして利用したニュースリストの例 ----- */
+.newsList {
+  display: grid;
+  gap: var(--space--6) var(--space--2);
+  grid-template-columns: auto;
+}
+
+.newsList__item {
+  display: grid;
+  row-gap: var(--space--2);
+}
+.newsList__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space--2);
+}
+
+.newsList__time {
+  font-size: var(--font-size--xs);
+}
+.newsList__category {
+  line-height: 1.2;
+  font-size: var(--font-size--xs);
+  padding: var(--space--1) var(--space--2);
+  border-radius: 2px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+}
+
+/* 広いサイズ */
+@media (min-width: 768px) {
+  .newsList {
+    grid-template-columns: auto auto 1fr;
+  }
+
+  .newsList__item {
+    grid-column: 1 / -1; /* 親の横幅いっぱいまで広げる */
+    grid-template-columns: subgrid; /* 親のグリッドラインを継承した3カラムレイアウト */
+  }
+  .newsList__meta {
+    /*   flexからgridへ切り替え   */
+    display: grid;
+    grid-template-columns: subgrid; /* さらにグリッドラインを継承 */
+    grid-column: 1 / span 2;
+  }
+}
