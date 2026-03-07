@@ -8,6 +8,10 @@
 
 - https://note.com/dev_onecareer/n/n36c37a2b777d
 
+### DTO
+
+- https://zenn.dev/frontline/articles/f5950193be9bde
+
 ### react-pdf
 
 ### lodash

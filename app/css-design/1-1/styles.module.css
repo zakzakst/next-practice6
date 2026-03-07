@@ -1,0 +1,36 @@
+.clampH1 {
+  font-size: clamp(2rem, 2rem + 2vw, 4rem);
+}
+
+/* フォントサイズ依存でコンテンツ間の余白をつける */
+.flowContent > * + * {
+  margin-block-start: 1.5em;
+}
+
+/* CTAセクション */
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ecf4fb;
+  padding: var(--space--8) var(--space--6);
+  gap: var(--space--4);
+}
+.cta__title {
+  font-weight: bold;
+  font-size: var(--font-size--xl);
+}
+.cta__text {
+  opacity: 0.9;
+  font-size: var(--font-size--sm);
+}
+.cta__button {
+  font-size: var(--font-size--base);
+  margin-top: var(--space--2);
+  padding: var(--space--2) var(--space--4);
+  box-shadow: var(--shadow--md);
+  background: #2a65ff;
+  color: #fff;
+  border-radius: 99em;
+  text-decoration: none;
+}
