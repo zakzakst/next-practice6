@@ -13,6 +13,7 @@
     "@react-pdf/renderer": "^4.3.2",
     "chart.js": "^4.5.1",
     "cleave.js": "^1.6.0",
+    "clsx": "^2.1.1",
     "google-libphonenumber": "^3.2.44",
     "lodash": "^4.17.23",
     "log4js": "^6.9.1",
