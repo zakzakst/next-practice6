@@ -1,25 +1,25 @@
 /* フォームの基本スタイリング */
-.field-title {
+.fieldTitle {
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-.field-title:not(:first-child) {
+.fieldTitle:not(:first-child) {
   margin-top: 1.5em;
 }
 
 /* ----- accent-colorで色をカスタマイズした例 ----- */
 /* インジケーターカラーの定義 */
-.demo-form {
+.demoForm {
   --indicator-color: #e91e63; /* ピンク */
 }
 /* ラベルをFlexboxで横並びにし、インジケーターとテキストの配置を調整 */
-.simple-radio,
-.simple-checkbox {
+.simpleRadio,
+.simpleCheckbox {
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
-:is(.simple-radio, .simple-checkbox) > input {
+:is(.simpleRadio, .simpleCheckbox) > input {
   /* サイズをテキストに合わせて調整 */
   width: 1em;
   height: 1em;
@@ -34,16 +34,16 @@
 
 /* ----- inputを非表示にしたカスタマイズ ----- */
 /* フォームの基本スタイリング */
-.field-title {
+.fieldTitle {
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-.field-title:not(:first-child) {
+.fieldTitle:not(:first-child) {
   margin-top: 1.5em;
 }
 
 /* display:none を使わずに <input> 本体を隠す */
-.visually-hidden {
+.visuallyHidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -58,12 +58,12 @@
 /*
  * radio & checkbox のスタイリング（本題）
  */
-.radio-field,
-.checkbox-field {
+.radioField,
+.checkboxField {
   display: grid;
   gap: 0.25em;
 }
-.custom-control {
+.customControl {
   position: relative;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 }
 
 /* カスタムインジケーターの基本スタイル */
-.custom-indicator {
+.customIndicator {
   position: relative;
   display: inline-block;
   width: 1.25em;
@@ -83,22 +83,22 @@
   transition-property: background, border-color, box-shadow;
   flex-shrink: 0;
 }
-.radio-indicator {
+.radioIndicator {
   border-radius: 50%;
 }
-.checkbox-indicator {
+.checkboxIndicator {
   border-radius: 4px;
 }
 
 /* 擬似要素でチェックマークを描画（デフォルトは非表示） */
-.custom-indicator::after {
+.customIndicator::after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* ラジオボタン：中央に小さな円を描画 */
-.radio-indicator::after {
+.radioIndicator::after {
   top: 50%;
   left: 50%;
   width: 48%;
@@ -109,7 +109,7 @@
 }
 
 /* チェックボックス：チェックマークをborderで描画 */
-.checkbox-indicator::after {
+.checkboxIndicator::after {
   width: 30%;
   height: 60%;
   border: solid #fff;
@@ -123,17 +123,17 @@
 }
 
 /* 選択された時のスタイル */
-.visually-hidden:checked + .custom-indicator {
+.visuallyHidden:checked + .customIndicator {
   background-color: var(--indicator-color);
   border-color: var(--indicator-color);
   box-shadow: var(--shadow--sm);
 }
-.visually-hidden:checked + .custom-indicator::after {
+.visuallyHidden:checked + .customIndicator::after {
   display: block;
 }
 
 /* Tab キーでのフォーカス時のスタイル */
-.visually-hidden:focus-visible + .custom-indicator {
+.visuallyHidden:focus-visible + .customIndicator {
   outline: 4px solid color-mix(in srgb, var(--indicator-color) 25%, transparent);
   border-color: var(--indicator-color);
 }
@@ -142,11 +142,11 @@
 /*
  * トグルスイッチ型のチェックボックス
  */
-.toggle-field {
+.toggleField {
   display: grid;
   gap: 0.5em;
 }
-.toggle-switch {
+.toggleSwitch {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -157,7 +157,7 @@
 }
 
 /* トラック（レール）部分 */
-.toggle-track {
+.toggleTrack {
   position: relative;
   width: calc(var(--thumb-size) * 2);
   height: var(--thumb-size);
@@ -167,7 +167,7 @@
 }
 
 /* つまみ（ボール）部分 */
-.toggle-thumb {
+.toggleThumb {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -180,33 +180,33 @@
 }
 
 /* チェックがONの時：トラックの色を変更 */
-.visually-hidden:checked + .toggle-track {
+.visuallyHidden:checked + .toggleTrack {
   background-color: var(--indicator-color);
 }
 
 /* チェックがONの時：つまみを右側へ移動 */
-.visually-hidden:checked + .toggle-track > .toggle-thumb {
+.visuallyHidden:checked + .toggleTrack > .toggleThumb {
   transform: translateX(var(--thumb-size));
 }
 
 /* フォーカスリングの調整 */
-.visually-hidden:focus-visible + .toggle-track {
+.visuallyHidden:focus-visible + .toggleTrack {
   outline: 4px solid color-mix(in srgb, var(--indicator-color) 25%, transparent);
 }
 
 /* ----- カード型UIのラジオボタン ----- */
 /* フォームの基本スタイリング */
-.demo-form-card-radio {
+.demoFormCardRadio {
   --indicator-color: #2563eb;
 }
-.field-title {
+.fieldTitle {
   font-weight: bold;
   margin-bottom: 1em;
   font-size: var(--font-size--md);
 }
 
 /* display:none を使わずに <input> 本体を隠す */
-.visually-hidden {
+.visuallyHidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -221,16 +221,16 @@
 /*
  * カード型のラジオボタン
  */
-.radio-card-field {
+.radioCardField {
   display: grid;
   gap: 1.5rem;
 }
-.radio-card {
+.radioCard {
   position: relative;
   display: block;
   cursor: pointer;
 }
-.radio-card__content {
+.radioCard__content {
   display: grid;
   gap: 0.25em;
   height: 100%;
@@ -240,41 +240,41 @@
   border-radius: 12px;
   transition: all 0.2s ease-in-out;
 }
-.radio-card__header {
+.radioCard__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.radio-card__title {
+.radioCard__title {
   font-weight: bold;
   font-size: var(--font-size--md);
 }
-.radio-card__description {
+.radioCard__description {
   font-size: var(--font-size--sm);
   margin-bottom: 0.5em;
   opacity: 0.8;
 }
-.radio-card__price {
+.radioCard__price {
   font-weight: bold;
   font-size: var(--font-size--lg);
 }
-.radio-card__price > span {
+.radioCard__price > span {
   font-size: var(--font-size--xs);
   opacity: 0.8;
   font-weight: normal;
 }
 
 /* 選択された時のスタイル */
-.visually-hidden:checked + .radio-card__content {
+.visuallyHidden:checked + .radioCard__content {
   border-color: var(--indicator-color);
   background-color: color-mix(in srgb, var(--indicator-color) 5%, transparent);
   box-shadow: var(--shadow--md);
 }
 /* フォーカスリング */
-.visually-hidden:focus-visible + .radio-card__content {
+.visuallyHidden:focus-visible + .radioCard__content {
   outline: 2px solid var(--indicator-color);
 }
 /* hover時はボーダーカラーだけ変える */
-.radio-card:hover .radio-card__content {
+.radioCard:hover .radioCard__content {
   border-color: var(--indicator-color);
 }
