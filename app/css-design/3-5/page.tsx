@@ -1,14 +1,15 @@
+import clsx from "clsx";
 import styles from "./styles.module.css";
 
 const Page = () => {
   return (
     <div className="_demo_ _flow_">
       <h2>ブラウザデフォルトのフォームUI</h2>
-      <form className="demo-form">
-        <div className="field-title">ラジオボタン</div>
-        <div className="radio-field">
+      <form className={styles.demoForm}>
+        <div className={styles.fieldTitle}>ラジオボタン</div>
+        <div className={styles.radioField}>
           <label>
-            <input type="radio" name="radio-group" checked />
+            <input type="radio" name="radio-group" />
             <span>選択肢 A</span>
           </label>
           <label>
@@ -17,8 +18,8 @@ const Page = () => {
           </label>
         </div>
 
-        <div className="field-title">チェックボックス</div>
-        <div className="checkbox-field">
+        <div className={styles.fieldTitle}>チェックボックス</div>
+        <div className={styles.checkboxField}>
           <label>
             <input type="checkbox" />
             <span>利用規約に同意する</span>
@@ -30,22 +31,22 @@ const Page = () => {
       <hr />
 
       <h2>accent-colorで色をカスタマイズした例</h2>
-      <form className="demo-form">
-        <div className="field-title">ラジオボタン</div>
-        <div className="radio-field">
-          <label className="simple-radio">
-            <input type="radio" name="radio-group" checked />
+      <form className={styles.demoForm}>
+        <div className={styles.fieldTitle}>ラジオボタン</div>
+        <div className={styles.radioField}>
+          <label className={styles.simpleRadio}>
+            <input type="radio" name="radio-group" />
             <span>選択肢 A</span>
           </label>
-          <label className="simple-radio">
+          <label className={styles.simpleRadio}>
             <input type="radio" name="radio-group" />
             <span>選択肢 B</span>
           </label>
         </div>
 
-        <div className="field-title">チェックボックス</div>
-        <div className="checkbox-field">
-          <label className="simple-checkbox">
+        <div className={styles.fieldTitle}>チェックボックス</div>
+        <div className={styles.checkboxField}>
+          <label className={styles.simpleCheckbox}>
             <input type="checkbox" />
             <span>利用規約に同意する</span>
           </label>
@@ -56,35 +57,40 @@ const Page = () => {
       <hr />
 
       <h2>inputを非表示にしたカスタマイズ</h2>
-      <form className="demo-form">
-        <div className="field-title">ラジオボタン</div>
-        <div className="radio-field">
-          <label className="custom-control radio-control">
+      <form className={styles.demoForm}>
+        <div className={styles.fieldTitle}>ラジオボタン</div>
+        <div className={styles.radioField}>
+          <label className={styles.customControl}>
             <input
               type="radio"
               name="radio-group"
-              className="visually-hidden"
-              checked
+              className={styles.visuallyHidden}
             />
-            <span className="custom-indicator radio-indicator"></span>
-            <span className="control-label">選択肢 A</span>
+            <span
+              className={clsx(styles.customIndicator, styles.radioIndicator)}
+            ></span>
+            <span>選択肢 A</span>
           </label>
-          <label className="custom-control radio-control">
+          <label className={styles.customControl}>
             <input
               type="radio"
               name="radio-group"
-              className="visually-hidden"
+              className={styles.visuallyHidden}
             />
-            <span className="custom-indicator radio-indicator"></span>
-            <span className="control-label">選択肢 B</span>
+            <span
+              className={clsx(styles.customIndicator, styles.radioIndicator)}
+            ></span>
+            <span>選択肢 B</span>
           </label>
         </div>
-        <div className="field-title">チェックボックス</div>
-        <div className="checkbox-field">
-          <label className="custom-control checkbox-control">
-            <input type="checkbox" className="visually-hidden" />
-            <span className="custom-indicator checkbox-indicator"></span>
-            <span className="control-label">利用規約に同意する</span>
+        <div className={styles.fieldTitle}>チェックボックス</div>
+        <div className={styles.checkboxField}>
+          <label className={styles.customControl}>
+            <input type="checkbox" className={styles.visuallyHidden} />
+            <span
+              className={clsx(styles.customIndicator, styles.checkboxIndicator)}
+            ></span>
+            <span>利用規約に同意する</span>
           </label>
         </div>
       </form>
@@ -93,23 +99,23 @@ const Page = () => {
       <hr />
 
       <h2>トグルスイッチのUI</h2>
-      <form className="demo-form">
-        <div className="field-title">トグルスイッチ</div>
-        <div className="toggle-field">
-          <label className="toggle-switch">
-            <input type="checkbox" className="visually-hidden" />
-            <span className="toggle-track">
-              <span className="toggle-thumb"></span>
+      <form className={styles.demoForm}>
+        <div className={styles.fieldTitle}>トグルスイッチ</div>
+        <div className={styles.toggleField}>
+          <label className={styles.toggleSwitch}>
+            <input type="checkbox" className={styles.visuallyHidden} />
+            <span className={styles.toggleTrack}>
+              <span className={styles.toggleThumb}></span>
             </span>
-            <span className="control-label">設定を有効化</span>
+            <span>設定を有効化</span>
           </label>
 
-          <label className="toggle-switch">
-            <input type="checkbox" className="visually-hidden" checked />
-            <span className="toggle-track">
-              <span className="toggle-thumb"></span>
+          <label className={styles.toggleSwitch}>
+            <input type="checkbox" className={styles.visuallyHidden} />
+            <span className={styles.toggleTrack}>
+              <span className={styles.toggleThumb}></span>
             </span>
-            <span className="control-label">通知を許可</span>
+            <span>通知を許可</span>
           </label>
         </div>
       </form>
@@ -118,54 +124,49 @@ const Page = () => {
       <hr />
 
       <h2>カード型UIのラジオボタン</h2>
-      <form className="demo-form-card-radio">
-        <div className="field-title">プランを選択してください</div>
-        <div className="radio-card-field">
-          <label className="radio-card">
-            <input
-              type="radio"
-              name="plan"
-              className="visually-hidden"
-              checked
-            />
-            <div className="radio-card__content">
-              <div className="radio-card__header">
-                <span className="radio-card__title">Starter</span>
+      <form className={styles.demoFormCardRadio}>
+        <div className={styles.fieldTitle}>プランを選択してください</div>
+        <div className={styles.radioCardField}>
+          <label className={styles.radioCard}>
+            <input type="radio" name="plan" className={styles.visuallyHidden} />
+            <div className={styles.radioCard__content}>
+              <div className={styles.radioCard__header}>
+                <span className={styles.radioCard__title}>Starter</span>
               </div>
-              <p className="radio-card__description">
+              <p className={styles.radioCard__description}>
                 個人利用向けの基本的な機能が含まれています。
               </p>
-              <div className="radio-card__price">
+              <div className={styles.radioCard__price}>
                 ¥980 <span>(税込) / 月</span>
               </div>
             </div>
           </label>
 
-          <label className="radio-card">
-            <input type="radio" name="plan" className="visually-hidden" />
-            <div className="radio-card__content">
-              <div className="radio-card__header">
-                <span className="radio-card__title">Pro</span>
+          <label className={styles.radioCard}>
+            <input type="radio" name="plan" className={styles.visuallyHidden} />
+            <div className={styles.radioCard__content}>
+              <div className={styles.radioCard__header}>
+                <span className={styles.radioCard__title}>Pro</span>
               </div>
-              <p className="radio-card__description">
+              <p className={styles.radioCard__description}>
                 チームでの共同作業や高度な分析機能が利用可能です。
               </p>
-              <div className="radio-card__price">
+              <div className={styles.radioCard__price}>
                 ¥2,980 <span>(税込) / 月</span>
               </div>
             </div>
           </label>
 
-          <label className="radio-card">
-            <input type="radio" name="plan" className="visually-hidden" />
-            <div className="radio-card__content">
-              <div className="radio-card__header">
-                <span className="radio-card__title">Enterprise</span>
+          <label className={styles.radioCard}>
+            <input type="radio" name="plan" className={styles.visuallyHidden} />
+            <div className={styles.radioCard__content}>
+              <div className={styles.radioCard__header}>
+                <span className={styles.radioCard__title}>Enterprise</span>
               </div>
-              <p className="radio-card__description">
+              <p className={styles.radioCard__description}>
                 大規模組織向けのセキュリティとサポートを提供します。
               </p>
-              <div className="radio-card__price">
+              <div className={styles.radioCard__price}>
                 ¥9,900 <span>(税込) / 月</span>
               </div>
             </div>
