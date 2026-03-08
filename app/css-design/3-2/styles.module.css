@@ -1,0 +1,163 @@
+/* ----- 基本のカードデザイン ----- */
+/* グリッドレイアウトによるカード配置 */
+.cards {
+  display: grid;
+  /* 列幅を自動調整: 最低300pxを確保しつつ、余白があれば広げる */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5em;
+}
+.card {
+  --duration: 0.4s;
+  display: grid;
+  box-shadow: var(--shadow--sm);
+  border-radius: var(--radius--md);
+  overflow: hidden;
+  background: #fff;
+  position: relative; /* リンクエリア拡大の基準点 */
+  transition: box-shadow var(--duration);
+}
+
+/* アスペクト比の固定と画像トリミング */
+.card__media {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+}
+.card__media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all var(--duration);
+}
+.card__content {
+  display: grid;
+  gap: 1em;
+  padding: 1em;
+}
+.card__title {
+  font-size: 1em;
+}
+.card__text {
+  font-size: 0.9em;
+  opacity: 0.7;
+  /* 行の高さを考慮したマージン */
+  margin-top: -0.25lh;
+}
+.card__footer {
+  display: flex;
+  justify-content: end;
+}
+.card__link {
+  text-decoration: none;
+  font-size: 0.8em;
+  opacity: 0.6;
+  transition: opacity var(--duration);
+}
+.card__arrow {
+  display: inline-flex;
+  transition: translate var(--duration);
+}
+/* カード全体をリンク化する */
+.card__footer,
+.card__link {
+  position: static;
+}
+.card__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ----- 浮き上がる様な表現と矢印のマイクロインタラクションを作成する ----- */
+@media (any-hover: hover) {
+  /* カード全体の浮き上がり効果 */
+  .card:hover {
+    box-shadow: var(--shadow--lg);
+  }
+
+  /* 薄く表示されているリンクテキストを濃くして強調する */
+  .card:hover .card__link {
+    opacity: 1;
+  }
+
+  /* 矢印を少しだけ右へスライドさせる */
+  .card:hover .card__arrow {
+    translate: 4px 0;
+  }
+}
+/*
+  Tabキーによるフォーカス時も同じ表現
+  （実際にフォーカスされるのは内部のテキストリンクなので、`:focus-within`を使用する）
+ */
+.card:focus-within {
+  box-shadow: var(--shadow--lg);
+}
+.card:focus-within .card__link {
+  opacity: 1;
+}
+.card:focus-within .card__arrow {
+  translate: 4px 0;
+}
+
+/* ----- メディアズームと色調変化を作成する  ----- */
+/* 通常時: 少し暗く、彩度を落とす */
+.cardsZoom .card__media > img {
+  filter: grayscale(0.6) contrast(1.05) brightness(0.95);
+}
+
+/* ホバー時: 本来の色に戻し、ズームする */
+@media (any-hover: hover) {
+  .cardsZoom > .card:hover .card__media > img {
+    scale: 1.15;
+    filter: grayscale(0) contrast(1) brightness(1);
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.cardsZoom > .card:focus-within .card__media > img {
+  scale: 1.15;
+  filter: grayscale(0) contrast(1) brightness(1);
+}
+
+/* ----- ぼかし効果とオーバーレイテキスト ----- */
+/* オーバーレイの初期状態 */
+.card__media__overlayer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  background: rgba(0 0 0 / 0.2);
+  opacity: 0;
+  backdrop-filter: blur(4px);
+  letter-spacing: 6px;
+  transition-property: opacity, letter-spacing;
+  transition-duration: var(--duration);
+}
+.card__media__overlayer > span {
+  margin: auto;
+  color: #fff;
+  font-style: italic;
+  font-weight: 200;
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  /* 背景画像のズーム */
+  .cardsBlur > .card:hover .card__media > img {
+    scale: 1.1;
+  }
+  /*  オーバーレイを表示  */
+  .card:hover .card__media__overlayer {
+    opacity: 1;
+
+    /* 文字間隔を6pxから縮める */
+    letter-spacing: 2px;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.cardsBlur > .card:focus-within .card__media > img {
+  scale: 1.1;
+}
+.card:focus-within .card__media__overlayer {
+  opacity: 1;
+  letter-spacing: 2px;
+}
