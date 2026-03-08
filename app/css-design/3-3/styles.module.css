@@ -1,0 +1,117 @@
+/* ----- カードにグラスモーフィズムを追加した例 ----- */
+.glassCards {
+  display: grid;
+  gap: 1.5em;
+}
+
+.glassCard {
+  --duration: 0.4s;
+  display: grid;
+  box-shadow: var(--shadow--sm);
+  border-radius: var(--radius--lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1.4;
+  transition: box-shadow var(--duration);
+}
+.glassCard__media {
+  grid-area: 1/1;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+  transition: filter var(--duration);
+}
+.glassCard__media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale var(--duration);
+}
+.glassCard__content {
+  grid-area: 1/1;
+  display: grid;
+  align-self: end;
+  gap: 0;
+  padding: 1em;
+  z-index: 0;
+  color: #fff;
+
+  /* すりガラス表現 */
+  background: rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(12px) brightness(0.95);
+  box-shadow:
+    inset 0px 1px 0px rgb(255 255 255 / 0.1),
+    inset 0px 2px 8px -2px rgb(255 255 255 / 0.1);
+}
+
+.glassCard__title {
+  font-weight: 500;
+  font-size: 1em;
+}
+.glassCard__text {
+  display: grid;
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+.glassCard__text__inner {
+  overflow: hidden;
+}
+/* padding や margin は非表示の時にも現れてくるので、擬似要素で余白調整（paddingをつけてトランジションさせてもいい） */
+.glassCard__text__inner::before,
+.glassCard__text__inner::after {
+  content: "";
+  display: block;
+  height: 0.5em;
+}
+.glassCard__footer {
+  display: flex;
+  justify-content: end;
+  gap: 0.5em;
+  padding-top: 0.5em;
+  opacity: 0.8;
+  font-size: 0.8em;
+  line-height: 1;
+}
+.glassCard__arrow {
+  transition: translate var(--duration);
+}
+
+/* 画面が広い時 */
+@media (min-width: 600px) {
+  .glassCards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  /* 追加テキストを隠し、ホバーアニメーションの準備 */
+  .glassCard__text {
+    grid-template-rows: 0fr;
+    transition: grid-template var(--duration);
+  }
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  /* 追加の説明テキストを出現させる */
+  .glassCard:hover .glassCard__text {
+    grid-template-rows: 1fr;
+  }
+  /* 画像を少し暗くする。（テキストの可読性確保にもなる）  */
+  .glassCard:hover .glassCard__media {
+    filter: brightness(0.85) contrast(1.05);
+  }
+  /* 矢印をほんのり動かす */
+  .glassCard:hover .glassCard__arrow {
+    translate: 4px 0;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.glassCard:focus-visible .glassCard__text {
+  grid-template-rows: 1fr;
+}
+.glassCard:focus-visible .glassCard__media {
+  filter: brightness(0.85) contrast(1.05);
+}
+.glassCard:focus-visible .glassCard__arrow {
+  translate: 4px 0;
+}

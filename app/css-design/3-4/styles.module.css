@@ -1,0 +1,116 @@
+/* アコーディオン全体のコンテナスタイル */
+.accordions {
+  border: solid 1px var(--color--border);
+  border-radius: 8px;
+  overflow: hidden; /* 角丸からコンテンツがはみだないように*/
+}
+
+/* アコーディオンで使うCSS変数の定義 */
+.accordion {
+  --duration: 0.3s;
+  --icon-transform: rotate(90deg);
+}
+
+/* 2つ目以降のアコーディオンには上部にボーダーを追加 */
+.accordion + .accordion {
+  border-top: solid 1px var(--color--border);
+}
+
+/* タイトル部分（クリック可能な領域）のスタイル */
+.accordion__title {
+  display: flex; /* list-item 以外にすることでデフォルトの三角アイコンは非表示になる */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 1em 1.25em;
+  cursor: pointer;
+  background-color: color-mix(in srgb, var(--color--border), transparent 75%);
+}
+
+/* Tab操作によるフォーカス時のアウトラインを調整 */
+.accordion__title:focus-visible {
+  outline: solid 2px var(--color--focus);
+  outline-offset: -3px;
+}
+
+/* Safariで表示されるデフォルトの三角形アイコンを削除 */
+.accordion__title::-webkit-details-marker {
+  display: none;
+}
+
+/* タイトルホバー時、背景色を少し濃くする */
+@media (any-hover: hover) {
+  .accordion__title:hover {
+    background-color: color-mix(in srgb, var(--color--border), transparent 50%);
+  }
+}
+
+/* アイコン擬似要素 */
+.accordion__title::after {
+  content: "";
+  display: block;
+
+  /*  clip-path で > アイコンを描画し、回転させる  */
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  clip-path: polygon(
+    calc(35% + 4%) calc(10% - 4%),
+    calc(75% + 4% * 2) 50%,
+    calc(35% + 4%) calc(90% + 4%),
+    calc(35% - 4%) calc(90% - 4%),
+    calc(75% - 4% * 2) 50%,
+    calc(35% - 4%) calc(10% + 4%)
+  );
+  transform: var(--icon-transform);
+  transition: transform var(--duration);
+}
+
+/* アコーディオンが開いている時、アイコンを反転 */
+.accordion[open] {
+  --icon-transform: rotate(270deg);
+}
+
+.accordion__content {
+  padding: 1.25em;
+}
+
+/* --- CSS で開閉アニメーション --- */
+
+/* コンテンツの余白 */
+.accordionAnimation .accordion__content {
+  /* 上下のpaddingはアニメーションがカクつくので0にする */
+  padding-block: 0em;
+  padding-inline: 1.25em;
+}
+.accordionAnimation .accordion__content::before,
+.accordionAnimation .accordion__content::after {
+  /* 上下の余白を擬似要素で確保する */
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1.25em;
+}
+
+/* ::details-content をサポートしているブラウザで開閉アニメーションをつける */
+@supports selector(details::details-content) {
+  .accordionAnimation::details-content {
+    display: grid;
+    transition-duration: var(--duration);
+    transition-property: content-visibility, grid-template;
+    transition-behavior: allow-discrete;
+
+    /* 閉じてる状態 */
+    grid-template-rows: 0fr;
+  }
+
+  /* 開いている時 */
+  .accordionAnimation[open]::details-content {
+    grid-template-rows: 1fr;
+  }
+
+  /* 0fr/1fr の開閉アニメーションのために必要 */
+  .accordionAnimation .accordion__content {
+    overflow: hidden;
+  }
+}
