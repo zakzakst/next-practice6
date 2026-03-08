@@ -1,0 +1,408 @@
+/* ----- 基本となるシンプルなボタン ----- */
+.button {
+  /*  ボタンカラーを変数で管理しておく。 */
+  --btn-color: #2a65ff;
+
+  /* デフォルトは塗りつぶしスタイル */
+  color: #fff;
+  background-color: var(--btn-color);
+
+  display: flex;
+  position: relative;
+  width: fit-content;
+  align-items: center;
+  line-height: 1.4;
+  text-decoration: none;
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+}
+
+/* tabキーでのフォーカス時のデフォルト動作 */
+.button:focus-visible {
+  outline-offset: 0px;
+  outline: solid 3px color-mix(in srgb, var(--color--focus), transparent 50%);
+}
+
+/* ----- ボタンの塗りつぶしアニメーションの例 ----- */
+
+/* ホバー時にカラー逆転するボタン */
+.hoverReverse {
+  /* box-shadowで内側のボーダーを表現（borderを使うとサイズが変わるため） */
+  box-shadow: inset 0 0 0 1px var(--btn-color);
+  transition-duration: 0.3s;
+  transition-property: color, background-color;
+}
+@media (any-hover: hover) {
+  .hoverReverse:hover {
+    color: var(--btn-color);
+    background: transparent;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現にする */
+.hoverReverse:focus-visible {
+  color: var(--btn-color);
+  background: transparent;
+}
+
+/* ホバー時に浮き上がるボタン */
+.hoverUp {
+  transition-duration: 0.3s;
+  transition-property: translate, box-shadow;
+
+  /* ボタンカラーと半透明の黒を混ぜてシャドウカラーを作る */
+  --shadow-color: color-mix(in srgb, var(--btn-color), rgb(0 0 0 / 20%) 60%);
+}
+
+@media (any-hover: hover) {
+  .hoverUp:hover {
+    /* 上方向に移動 */
+    translate: 0 -6px;
+    /* 影をつける */
+    box-shadow: 0 24px 24px -12px var(--shadow-color);
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現にする */
+.hoverUp:focus-visible {
+  translate: 0 -6px;
+  box-shadow: 0 24px 24px -12px var(--shadow-color);
+}
+
+/* ----- アウトラインボタンのベーススタイル ----- */
+
+.buttonOutline {
+  color: var(--btn-color);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--btn-color);
+
+  /* 擬似要素に z-index: -1 を使うのでスタッキングコンテキストを閉じておく */
+  isolation: isolate;
+}
+
+/* ----- アウトラインボタンのアニメーションパターン ----- */
+
+/* 背景色が左から右へスライドするボタン */
+.hoverSlide {
+  overflow: hidden; /* はみ出した擬似要素を隠す */
+  transition: color 0.3s;
+}
+.hoverSlide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* 文字の下に配置 */
+  background-color: var(--btn-color);
+
+  /* 非ホバー時、スケールを左側に縮めて隠す */
+  scale: 0 1;
+  transform-origin: left center; /* 変形の基準点を左端に */
+  transition: scale 0.3s;
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  .hoverSlide:hover {
+    color: #fff;
+  }
+  /* 擬似要素の大きさを戻す */
+  .hoverSlide:hover::before {
+    scale: 1;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.hoverSlide:focus-visible {
+  color: #fff;
+}
+.hoverSlide:focus-visible::before {
+  scale: 1;
+}
+
+/* 丸いインクが広がるようなボタン */
+.hoverInk {
+  overflow: hidden;
+  transition: color 0.3s;
+}
+/* ボタンセンターに丸い図形を配置 */
+.hoverInk::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  translate: 0 -50%; /* 上下中央配置 */
+  z-index: -1;
+  width: 100%;
+  aspect-ratio: 1/1; /* 正方形（円）にする */
+  background: var(--btn-color);
+  border-radius: 50%;
+
+  /*  非ホバー時は隠れている  */
+  scale: 0;
+  opacity: 0.2;
+  filter: blur(12px); /* ぼかしを入れてインク感を出す */
+  transition-timing-function: ease-out;
+  transition:
+    scale 0.4s,
+    filter 0.2s,
+    opacity 0.2s;
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  .hoverInk:hover {
+    color: #fff;
+  }
+  .hoverInk:hover::before {
+    scale: 1.2; /* ボタン全体を覆うまで拡大 */
+    opacity: 1;
+    filter: blur(0px); /* ぼかしをなくしてくっきりさせる */
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.hoverInk:focus-visible {
+  color: #fff;
+}
+.hoverInk:focus-visible::before {
+  scale: 1.2;
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* ----- ホバーで沈み込む立体的なボタン ----- */
+
+/* ホバーで沈み込む立体的なボタン */
+.buttonPush {
+  /*  ボタンカラーをベースに、color-mixで暗いシャドウカラーを作る  */
+  --shadow-color: color-mix(in srgb, var(--btn-color), #000 40%);
+
+  /*  立体的に見せるためのハイライトシャドウ（上部の光沢）  */
+  --highlight-shadow: inset 0px 1px 4px 0px rgb(255 255 255 / 40%);
+
+  /* 下方向の硬い影で厚みを表現 */
+  box-shadow:
+    0 0.3em 0 0 var(--shadow-color),
+    var(--highlight-shadow);
+
+  /*  トランジション  */
+  transition-duration: 0.3s;
+  transition-property: translate, box-shadow;
+
+  /*  立体シャドウ分の余白を確保（これがないと下の要素と重なる）  */
+  margin-bottom: 0.3em;
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  .buttonPush:hover {
+    /* 影の分だけ下に移動させる */
+    translate: 0 calc(0.3em - 2px);
+    /* 影を薄くして、押し込まれた状態を表現 */
+    box-shadow:
+      0 2px 0 0 var(--shadow-color),
+      var(--highlight-shadow);
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.buttonPush:focus-visible {
+  translate: 0 calc(0.3em - 2px);
+  box-shadow:
+    0 2px 0 0 var(--shadow-color),
+    var(--highlight-shadow);
+}
+
+/* ----- ホバーで背景が移動するグラデーションボタン ----- */
+/* グラデーションが動くボタン */
+.buttonGrad {
+  /* ホバー前後のグラデーションを先につけておく */
+  background: linear-gradient(
+    60deg,
+    rgb(40, 80, 255) 0%,
+    rgb(160, 40, 255) 50%,
+    rgb(255, 80, 48) 100%
+  );
+  /* 背景サイズを横幅2倍にしておく */
+  background-size: 200% 100%;
+  transition: background-position 0.3s;
+}
+/* ホバー時 */
+@media (any-hover: hover) {
+  .buttonGrad:hover {
+    /* 背景位置を移動させて、グラデーションが移り変わったように見せる */
+    background-position: 100% 0;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.buttonGrad:focus-visible {
+  background-position: 100% 0;
+}
+
+/* ----- ホバー時にボーダーと背景が分離するボタン ----- */
+/* ボーダーと背景色が分離するようなボタン */
+.buttonSplit {
+  color: var(--btn-color);
+  background: none;
+}
+
+/* 背景色（before）とボーダー（after）擬似要素 */
+.buttonSplit::before,
+.buttonSplit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  translate: 0;
+  transition-property: translate, opacity;
+  transition-duration: 0.3s;
+}
+.buttonSplit::before {
+  opacity: 0.1;
+  background-color: color-mix(in srgb, var(--btn-color), #000 10%);
+}
+
+.buttonSplit::after {
+  box-shadow: inset 0 0 0 2px var(--btn-color);
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  .buttonSplit:hover::before {
+    opacity: 0.2; /* 少し濃くする */
+    translate: 4px 4px; /* 右下にズレる */
+  }
+  .buttonSplit:hover::after {
+    translate: -4px -4px; /* 左上にズレる */
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.buttonSplit:focus-visible::before {
+  opacity: 0.2;
+  translate: 4px 4px;
+}
+.buttonSplit:focus-visible::after {
+  translate: -4px -4px;
+}
+/* .button に適用しているデフォルトの挙動をオフ */
+.buttonSplit:focus-visible {
+  outline: none;
+}
+
+/* ----- ループアニメーションとホバーアニメーションを持つ、光るボタン ----- */
+/* 定期的にキラッと光るボタン */
+.buttonShine {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ループアニメーション */
+@keyframes shine-run {
+  0% {
+    translate: -100% 0;
+  }
+  /* 全体の秒数のうち15%で素早く移動を完結させる */
+  15% {
+    translate: 100% 0;
+  }
+  /* 残り時間は待機 */
+  100% {
+    translate: 100% 0;
+  }
+}
+
+/* ホバー時に発火するアニメーション */
+@keyframes shine-hover {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 100% 0;
+  }
+}
+
+/* 光りを表現する擬似要素 */
+.buttonShine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  translate: -100% 0; /* 最初は左枠外に隠しておく */
+  background: linear-gradient(
+    60deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(255, 255, 255, 0.5) 60%,
+    transparent 65%
+  );
+
+  /* 4秒のアニメーションをループする。 delay時間(3s)はhover解除からの再開時間になる. */
+  animation: 4s shine-run 3s infinite;
+}
+
+/* ホバー時 */
+@media (any-hover: hover) {
+  .buttonShine:hover::after {
+    animation: 0.5s shine-hover;
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.buttonShine:focus-visible::after {
+  animation: 0.5s shine-hover;
+}
+
+/* ----- ホバー時に立体的に回転する3Dボタン ----- */
+.cubeButton {
+  position: relative;
+  display: grid;
+  line-height: 1.5;
+  text-decoration: none;
+  transition-duration: 0.4s;
+
+  /*  ボタンカラー */
+  --btn-color: #2a65ff;
+
+  /*  サイズ  */
+  --cube-width: 240px;
+  --cube-height: 4rem;
+  width: var(--cube-width);
+  height: var(--cube-height);
+
+  /*  3D  */
+  transform-style: preserve-3d;
+
+  /*  hover時の回転がより立体的になる  */
+  perspective: var(--cube-width);
+}
+
+.cubeButton__text {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  transform-origin: center center calc(var(--cube-height) * -0.5);
+}
+
+.cubeButton__text:first-child {
+  color: var(--btn-color);
+  background-color: var(--color--bg, #fff);
+  border: solid 4px currentColor;
+}
+.cubeButton__text:last-child {
+  color: #fff;
+  background-color: var(--btn-color);
+  transform: rotateX(-90deg);
+}
+
+/* ホバーで回転 */
+@media (any-hover: hover) {
+  .cubeButton:hover .cubeButton__text {
+    transform: rotateX(90deg);
+  }
+  .cubeButton:hover .cubeButton__text:last-child {
+    transform: rotateX(0deg);
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.cubeButton:focus-visible .cubeButton__text {
+  transform: rotateX(90deg);
+}
+.cubeButton:focus-visible .cubeButton__text:last-child {
+  transform: rotateX(0deg);
+}
