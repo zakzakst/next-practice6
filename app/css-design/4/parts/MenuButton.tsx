@@ -1,15 +1,18 @@
+import styles from "./menuButton.module.css";
+
 export const MenuButton = () => {
   return (
     <button
       type="button"
       id="menu-open-btn"
-      className="menu-btn menu-btn--open"
+      className={styles.menuBtn}
+      // TODO: menu-btn--openのスタイル
       aria-labelledby="menu-open-label"
     >
       <span id="menu-open-label" className="display-none">
         メニューを開く
       </span>
-      <span className="menu-icon" aria-hidden="true">
+      <span className={styles.menuIcon} aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>

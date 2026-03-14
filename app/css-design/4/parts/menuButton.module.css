@@ -1,4 +1,4 @@
-.menu-btn {
+.menuBtn {
   /* buttonのスタイルリセット */
   font: inherit;
   width: auto;
@@ -18,25 +18,28 @@
 }
 
 /* メニューを開くボタン: メニュー展開時にフェードアウト */
-.menu-btn--open {
+/* TODO: 後で対応 */
+/* .menu-btn--open {
   opacity: 1;
-}
+} */
 /* body:has() は処理負荷が高いので、隣接セレクタを使う */
-.nav-dialog[data-open] + .header .menu-btn--open {
+/* TODO: 後で対応 */
+/* .nav-dialog[data-open] + .header .menu-btn--open {
   opacity: 0;
   pointer-events: none;
-}
+} */
 
 /* メニューを閉じるボタン: dialog展開時にフェードイン */
-.menu-btn--close {
+/* TODO: 後で対応 */
+/* .menu-btn--close {
   opacity: 0;
 }
 .nav-dialog[data-open] .menu-btn--close {
   opacity: 1;
-}
+} */
 
 /* ハンバーガーアイコン */
-.menu-icon {
+.menuIcon {
   width: 1.5em;
   height: 1.5em;
   display: grid;
@@ -44,7 +47,7 @@
   gap: 0.375em;
   transition: gap var(--duration);
 }
-.menu-icon > span {
+.menuIcon > span {
   display: block;
   width: 100%;
   height: 2px;
@@ -55,7 +58,8 @@
 }
 
 /* 閉じるボタンのアイコン */
-.menu-icon--close > span {
+/* TODO: 後で対応 */
+/* .menu-icon--close > span {
   grid-area: 1/1;
   --rotate: 45deg;
   transition: transform var(--duration);
@@ -66,7 +70,6 @@
 .menu-icon--close > span:last-child {
   transform: rotate(calc(var(--rotate) * -1));
 }
-/* ホバーアニメーション */
 @media (any-hover: hover) {
   .menu-btn--open:hover > .menu-icon {
     gap: 0.25em;
@@ -74,4 +77,4 @@
   .menu-btn--close:hover > .menu-icon > span {
     --rotate: 30deg;
   }
-}
+} */
