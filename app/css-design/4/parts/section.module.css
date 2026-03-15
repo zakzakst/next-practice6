@@ -1,0 +1,76 @@
+.section {
+  padding-block: 8em;
+  background-color: var(--color--bg);
+
+  /* アニメーションで要素がはみ出してbodyを飛び出さないようにする */
+  overflow-x: clip;
+}
+.sectionTitle {
+  display: grid;
+  gap: 0.5em;
+  margin-bottom: 2em;
+}
+.sectionTitle__sub {
+  font-size: var(--font-size--base);
+  font-style: italic;
+  color: var(--color--accent);
+  font-family: var(--font--serif);
+  letter-spacing: 0.125em;
+}
+.sectionTitle__main {
+  font-size: var(--font-size--2xl);
+  line-height: 1.2;
+  font-family: var(--font--serif);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sectionTitle__main {
+      animation: scroll-fadeInFromX ease-out both; /* both でアニメーション開始前も from の状態を適用 */
+      animation-timeline: view();
+      animation-range: cover 0% cover 40%;
+    }
+    .sectionTitle__sub {
+      animation: scroll-fadeInFromTop ease-out both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 40%;
+    }
+    .sectionContent {
+      animation: scroll-fadeInFromBottom ease-out both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 40%;
+    }
+    @keyframes scroll-fadeInFromTop {
+      0% {
+        opacity: 0;
+        translate: 0 -4rem;
+      }
+      100% {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+    @keyframes scroll-fadeInFromBottom {
+      0% {
+        opacity: 0;
+        translate: 0 4rem;
+      }
+      100% {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+    @keyframes scroll-fadeInFromX {
+      0% {
+        opacity: 0;
+        translate: 4rem 0;
+        letter-spacing: 0.2em;
+      }
+      100% {
+        opacity: 1;
+        translate: 0 0;
+        letter-spacing: normal;
+      }
+    }
+  }
+}

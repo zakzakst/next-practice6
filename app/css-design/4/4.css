@@ -75,6 +75,21 @@ body {
 .css-design-container--xl > * {
   max-width: var(--size--xl);
 }
+
+/* 今回のデモサイトで使うボタンリンクの基本スタイル */
+.button {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  padding: 0.25em 0.5em 0.5em;
+}
+
+@media (any-hover: hover) {
+  .button:hover {
+    color: var(--color--accent);
+  }
+}
+
 /* -----------------------------------
  * 以下、ユーティリティクラス
  * --------------------------------- */
