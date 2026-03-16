@@ -1,13 +1,27 @@
+import clsx from "clsx";
 import styles from "./aboutSection.module.css";
 import { Section, SectionTitle, SectionContent } from "./Section";
 
 export const AboutSection = () => {
   return (
-    <Section id="about" className="section-about container container--lg">
-      <div className="section-about__columns switch-columns">
+    <Section
+      id="about"
+      className={clsx(
+        styles.sectionAbout,
+        "css-design-container",
+        "css-design-container--lg",
+      )}
+    >
+      <div className={clsx(styles.sectionAbout__columns, "switch-columns")}>
         <div className="switch-columns__side">
-          <div className="section-about__media img-frame has-parallax">
-            <img src="img/about.jpg" alt="陶芸家の手元" />
+          <div
+            className={clsx(
+              styles.sectionAbout__media,
+              "img-frame",
+              "has-parallax",
+            )}
+          >
+            <img src="https://picsum.photos/1500/1000" alt="陶芸家の手元" />
           </div>
         </div>
         <div className="switch-columns__main">

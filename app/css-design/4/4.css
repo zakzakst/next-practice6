@@ -76,6 +76,20 @@ body {
   max-width: var(--size--xl);
 }
 
+/* 第１章で学んだ、メディアクエリに依存しないカラムコントロール */
+.switch-columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+.switch-columns__side {
+  flex-basis: var(--side-width, 240px);
+  flex-grow: 1;
+}
+.switch-columns__main {
+  flex-basis: min(100%, var(--main-width, 50%));
+  flex-grow: 999999; /* 大きな数値を指定 */
+}
+
 /* 今回のデモサイトで使うボタンリンクの基本スタイル */
 .button {
   text-decoration: none;
