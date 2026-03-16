@@ -3,6 +3,7 @@ import "./4.css";
 import { ProgressBar } from "./parts/ProgressBar";
 import { Header } from "./parts/Header";
 import { Hero } from "./parts/Hero";
+import { AboutSection } from "./parts/AboutSection";
 import { Footer } from "./parts/Footer";
 
 const Page = () => {
@@ -11,6 +12,7 @@ const Page = () => {
       <ProgressBar />
       <Header />
       <Hero />
+      <AboutSection />
       <div style={{ height: "100vh" }}></div>
       <Footer />
     </>

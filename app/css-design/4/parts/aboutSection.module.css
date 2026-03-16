@@ -1,0 +1,8 @@
+.sectionAbout__columns {
+  gap: 2.5em;
+  --side-width: 40%;
+  --main-width: 20em;
+}
+.sectionAbout__media {
+  aspect-ratio: 3/4;
+}
