@@ -1,8 +1,8 @@
-.section-collection {
+.sectionCollection {
   background-color: var(--color--bg-mid);
 }
 
-.item-list {
+.item__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space--8);

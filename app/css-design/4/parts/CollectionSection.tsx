@@ -1,16 +1,21 @@
+import clsx from "clsx";
+import styles from "./collectionSection.module.css";
+import { Section, SectionTitle } from "./Section";
+
 export const CollectionSection = () => {
   return (
-    <div
+    <Section
       id="collection"
-      className="section section-collection container container--lg"
+      className={clsx(
+        styles.sectionCollection,
+        "css-design-container",
+        "css-design-container--lg",
+      )}
     >
-      <div className="section-title">
-        <span className="section-title__sub">New Collection</span>
-        <h2 className="section-title__main">新作コレクション</h2>
-      </div>
-      <div className="item-list">
-        <a className="item" href="###">
-          <div className="item__media img-frame">
+      <SectionTitle sub="New Collection" main="新作コレクション" />
+      <div className={styles.item__list}>
+        <a className={styles.item} href="###">
+          <div className={clsx(styles.item__media, "img-frame")}>
             <img
               src="https://picsum.photos/1000/800"
               width="960"
@@ -18,13 +23,13 @@ export const CollectionSection = () => {
               alt="セラミックの花瓶"
             />
           </div>
-          <div className="item__content">
-            <h3 className="item__title">Ceramic Vase - 'Suna'</h3>
-            <p className="item__text">Pottery / Japan</p>
+          <div className={styles.item__content}>
+            <h3 className={styles.item__title}>Ceramic Vase - 'Suna'</h3>
+            <p className={styles.item__text}>Pottery / Japan</p>
           </div>
         </a>
-        <a className="item" href="###">
-          <div className="item__media img-frame">
+        <a className={styles.item} href="###">
+          <div className={clsx(styles.item__media, "img-frame")}>
             <img
               src="https://picsum.photos/1000/800"
               width="960"
@@ -32,13 +37,13 @@ export const CollectionSection = () => {
               alt="上質なレザーの小物"
             />
           </div>
-          <div className="item__content">
-            <h3 className="item__title">Premium Leather Goods</h3>
-            <p className="item__text">Leather Craft / Italy</p>
+          <div className={styles.item__content}>
+            <h3 className={styles.item__title}>Premium Leather Goods</h3>
+            <p className={styles.item__text}>Leather Craft / Italy</p>
           </div>
         </a>
-        <a className="item" href="###">
-          <div className="item__media img-frame">
+        <a className={styles.item} href="###">
+          <div className={clsx(styles.item__media, "img-frame")}>
             <img
               src="https://picsum.photos/1000/800"
               width="960"
@@ -46,12 +51,12 @@ export const CollectionSection = () => {
               alt="木製の椅子"
             />
           </div>
-          <div className="item__content">
-            <h3 className="item__title">Oak Dining Chair</h3>
-            <p className="item__text">Furniture / Denmark</p>
+          <div className={styles.item__content}>
+            <h3 className={styles.item__title}>Oak Dining Chair</h3>
+            <p className={styles.item__text}>Furniture / Denmark</p>
           </div>
         </a>
       </div>
-    </div>
+    </Section>
   );
 };
