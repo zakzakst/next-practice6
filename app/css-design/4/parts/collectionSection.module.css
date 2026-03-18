@@ -1,0 +1,57 @@
+.section-collection {
+  background-color: var(--color--bg-mid);
+}
+
+.item-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space--8);
+}
+.item {
+  display: grid;
+  position: relative;
+  align-content: start;
+  color: inherit;
+  text-decoration: none;
+}
+.item__media {
+  aspect-ratio: 3/4;
+  position: relative;
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+}
+.item__media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition-duration: var(--duration);
+  transition-property: scale, filter;
+
+  /* 通常時: 少し暗く、彩度を落とす */
+  filter: grayscale(1) contrast(1.05);
+}
+.item__content {
+  display: grid;
+  gap: 0.25em;
+  margin-top: 1em;
+  line-height: 1.25;
+}
+.item__title {
+  font-size: var(--font-size--sm);
+}
+.item__text {
+  opacity: 0.7;
+  font-size: var(--font-size--xs);
+}
+
+/* ホバー時: 本来の色に戻し、ズームする */
+@media (any-hover: hover) {
+  .item:hover .item__media > img {
+    scale: 1.2;
+    filter: grayscale(0);
+  }
+}
+/* Tabキーによるフォーカス時も同じ表現 */
+.item:focus-within .item__media > img {
+  scale: 1.2;
+  filter: grayscale(0);
+}

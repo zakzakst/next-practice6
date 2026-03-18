@@ -12,7 +12,7 @@ export const CollectionSection = () => {
         <a className="item" href="###">
           <div className="item__media img-frame">
             <img
-              src="img/item-1.jpg"
+              src="https://picsum.photos/1000/800"
               width="960"
               height="640"
               alt="セラミックの花瓶"
@@ -26,7 +26,7 @@ export const CollectionSection = () => {
         <a className="item" href="###">
           <div className="item__media img-frame">
             <img
-              src="img/item-2.jpg"
+              src="https://picsum.photos/1000/800"
               width="960"
               height="640"
               alt="上質なレザーの小物"
@@ -40,7 +40,7 @@ export const CollectionSection = () => {
         <a className="item" href="###">
           <div className="item__media img-frame">
             <img
-              src="img/item-3.jpg"
+              src="https://picsum.photos/1000/800"
               width="960"
               height="640"
               alt="木製の椅子"
