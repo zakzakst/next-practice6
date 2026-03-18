@@ -1,0 +1,36 @@
+.sectionMarquee {
+  padding-block: 1em;
+  background-color: var(--black);
+}
+.marquee {
+  font-size: 5em;
+  color: transparent;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  text-transform: uppercase;
+  /* 現状、-webkit- のみで全主要ブラウザ対応 */
+  -webkit-text-stroke: 2px var(--white);
+
+  /* マーキー表現 */
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.marquee__text {
+  padding-inline-end: 0.5em;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  0% {
+    translate: 0;
+  }
+  100% {
+    translate: -100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee__text {
+    animation-duration: 60s;
+  }
+}
