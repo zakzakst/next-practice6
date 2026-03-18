@@ -15,14 +15,14 @@ export const Section = ({
 };
 
 interface SectionTitleProps {
-  sub: ReactNode;
+  sub?: ReactNode;
   main: ReactNode;
 }
 
 export const SectionTitle = ({ sub, main }: SectionTitleProps) => {
   return (
     <div className={styles.sectionTitle}>
-      <span className={styles.sectionTitle__sub}>{sub}</span>
+      {sub && <span className={styles.sectionTitle__sub}>{sub}</span>}
       <h2 className={styles.sectionTitle__main}>{main}</h2>
     </div>
   );

@@ -161,3 +161,28 @@ body {
 .mt-8 {
   margin-top: var(--space--8);
 }
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .has-parallax {
+      overflow: hidden; /* パララックス用に子要素のはみ出しを隠す */
+      view-timeline: --media-parallax; /* 親要素でビュータイムラインを定義 */
+    }
+    .has-parallax > img {
+      height: 140%; /* 動く分の余白を確保 */
+      margin-top: -20%; /* 中央に配置 */
+      animation: parallax-y linear both;
+      animation-timeline: --media-parallax; /* 親のタイムラインを参照 */
+      animation-range: cover 0% cover 100%;
+    }
+
+    @keyframes parallax-y {
+      0% {
+        translate: 0 -20%; /* 上方向に20%ずらした状態から */
+      }
+      100% {
+        translate: 0 20%; /* 下方向に20%ずらして終了 */
+      }
+    }
+  }
+}

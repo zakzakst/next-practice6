@@ -6,6 +6,7 @@ import { Hero } from "./parts/Hero";
 import { AboutSection } from "./parts/AboutSection";
 import { CollectionSection } from "./parts/CollectionSection";
 import { MarqueeSection } from "./parts/MarqueeSection";
+import { VisitSection } from "./parts/VisitSection";
 import { Footer } from "./parts/Footer";
 
 const Page = () => {
@@ -17,6 +18,7 @@ const Page = () => {
       <AboutSection />
       <CollectionSection />
       <MarqueeSection />
+      <VisitSection />
       <Footer />
     </>
   );
