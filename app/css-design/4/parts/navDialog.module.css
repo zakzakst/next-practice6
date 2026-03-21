@@ -1,0 +1,114 @@
+.navDialog {
+  /* デフォルトのdialogスタイルをリセット */
+  border: none;
+  padding: 0;
+  margin: 0;
+  max-width: unset;
+  max-height: unset;
+  overflow: unset;
+  background: none;
+
+  /* フルスクリーン表示 */
+  width: 100%;
+  height: 100%;
+
+  /* テキストカラー */
+  color: var(--white);
+
+  /* 背景を半透明の黒 + ブラー効果 */
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+
+  /* アニメーション */
+  opacity: 0;
+  transition:
+    opacity var(--duration),
+    var(--duration);
+}
+
+/* ::backdrop のスタイル */
+.navDialog::backdrop {
+  background-color: transparent;
+}
+
+/* トランジション用（data-open でフェードイン） */
+.navDialog[data-open] {
+  opacity: 1;
+}
+
+/* dialogのdisplay操作はできるだけ避けたいので、innerを用意してレイアウト管理 */
+.navDialog__inner {
+  /* 内部を縦向きフレックス（__body を flex:1 で広げるため） */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 閉じるボタンを配置するヘッダー */
+.navDialog__head {
+  padding-block: var(--space--4);
+}
+.navDialog__head__inner {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* ナビゲーションコンテンツ本体 */
+.navDialog__body {
+  /* 高さを広げる */
+  flex: 1;
+
+  /* 要素が増えて画面サイズを超えたらここをスクロールできるようにする */
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  /* 中央配置 */
+  display: grid;
+  align-content: center;
+}
+
+/* ナビゲーションリスト */
+.siteNav__list {
+  list-style: none;
+  padding: 0;
+
+  /* 項目を縦並びで余白をgapで管理 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space--4);
+}
+
+/* モーダル展開時のアニメーションを付ける */
+.siteNav__item {
+  opacity: 0;
+  transform: translateY(2em);
+  transition:
+    transform var(--duration),
+    opacity var(--duration);
+}
+.navDialog[data-open] .siteNav__item {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* ナビゲーションリンク */
+.siteNav__item > a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 2em;
+  font-family: serif;
+  font-style: italic;
+
+  display: inline-flex;
+  padding: 0.25em 0.5em;
+  border-radius: 2px;
+  transition-duration: var(--duration);
+  transition-property: color, scale;
+}
+@media (any-hover: hover) {
+  .siteNav__item > a:hover {
+    color: var(--color--accent);
+    scale: 1.05;
+  }
+}
