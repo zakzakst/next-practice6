@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 import clsx from "clsx";
 import styles from "./navDialog.module.css";
 import { MenuButton } from "./MenuButton";
 
 export const NavDialog = () => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const [isOpenMenuButton, setIsOpenMenuButton] = useState(false);
 
   const openDialog = useCallback(() => {
     if (!dialogRef.current) return;
@@ -35,6 +36,17 @@ export const NavDialog = () => {
     dialogRef.current.close();
   }, [dialogRef]);
 
+  const handleChangeOpen = useCallback(
+    (isOpen: boolean) => {
+      if (isOpen) {
+        closeDialog();
+      } else {
+        openDialog();
+      }
+    },
+    [openDialog, closeDialog],
+  );
+
   useEffect(() => {
     openDialog();
   }, []);
@@ -55,7 +67,10 @@ export const NavDialog = () => {
           )}
         >
           <div className={styles.navDialog__head__inner}>
-            <MenuButton />
+            <MenuButton
+              isOpen={isOpenMenuButton}
+              changeOpen={handleChangeOpen}
+            />
             {/* <button
               type="button"
               id="menu-close-btn"
