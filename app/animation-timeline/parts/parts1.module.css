@@ -1,0 +1,14 @@
+.box {
+  position: fixed;
+  animation-name: slide;
+  animation-timeline: scroll();
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(400px);
+  }
+}
