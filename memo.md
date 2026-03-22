@@ -1,3 +1,8 @@
+### MCPサーバー自作
+
+- https://qiita.com/youtoy/items/1d46724e40ab96607b18
+  ⇒VSCode側の設定方法が変わっているみたいで上手くできなかった
+
 ### threejs
 
 - https://threejs-journey.com/
