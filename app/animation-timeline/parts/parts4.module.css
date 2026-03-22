@@ -1,0 +1,56 @@
+.feature {
+  padding: 100px;
+  text-align: center;
+  color: white;
+
+  /* ここが重要 */
+  view-timeline-name: --feature;
+  /* view-timeline-axis: block; */
+}
+
+.feature__image {
+  width: 400px;
+
+  animation: imageZoom linear;
+  animation-timeline: --feature;
+  animation-range: entry 0% cover 60%;
+}
+
+.feature__title {
+  opacity: 0;
+  transform: translateY(40px);
+
+  animation: titleReveal 0.8s ease-out forwards;
+  animation-timeline: --feature;
+  animation-range: entry 20% cover 40%;
+}
+
+.feature__text {
+  opacity: 0;
+
+  animation: textFade 0.8s ease-out forwards;
+  animation-timeline: --feature;
+  animation-range: entry 30% cover 50%;
+}
+
+@keyframes imageZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes titleReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textFade {
+  to {
+    opacity: 1;
+  }
+}
