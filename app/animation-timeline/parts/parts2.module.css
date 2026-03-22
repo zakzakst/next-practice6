@@ -1,0 +1,16 @@
+.card {
+  margin: 80px 0;
+  padding: 40px;
+  background: #eee;
+  opacity: 0;
+  transform: translateY(40px) scale(0.8);
+  animation: fade-slide 1s;
+  animation-timeline: view();
+}
+
+@keyframes fade-slide {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
