@@ -4,8 +4,9 @@
   background: #eee;
   opacity: 0;
   transform: translateY(40px) scale(0.8);
-  animation: fade-slide 1s;
+  animation: fade-slide 1s forwards;
   animation-timeline: view();
+  animation-range: entry 20% cover 40%;
 }
 
 @keyframes fade-slide {
