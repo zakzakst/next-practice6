@@ -40,11 +40,14 @@ type WorkRecord = {
   start: string; // "2026-04-01T09:00:00+09:00"
   end: string; // "2026-04-02T09:00:00+09:00"
 
+  // 休憩
+  breakMinutes: number;
+
   // 休憩（複数対応）
-  breaks: {
-    start: string;
-    end: string;
-  }[];
+  // breaks: {
+  //   start: string;
+  //   end: string;
+  // }[];
 
   // 表示用（任意）
   workDate: string; // "2026-04-01"
