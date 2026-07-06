@@ -1,3 +1,7 @@
+### lil-gui
+
+- https://lil-gui.georgealways.com/
+
 ### MCPサーバー自作
 
 - https://qiita.com/youtoy/items/1d46724e40ab96607b18
