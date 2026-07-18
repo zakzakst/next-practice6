@@ -1,3 +1,8 @@
+### axios
+
+- interceptors
+  - https://qiita.com/buntafujikawa/items/78e9204cc9ea7eaabd3d
+
 ### lil-gui
 
 - https://lil-gui.georgealways.com/
