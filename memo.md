@@ -16,7 +16,7 @@
 - オープンデータを利用してBFF練習してみる
   - https://portal.data.metro.tokyo.lg.jp/
   - https://data.e-gov.go.jp/info/ja
-  - 余裕あればビジュアライゼーションとかも挑戦してみたい
+  - 余裕あればビジュアライゼーションとかも挑戦してみたい（⇒この方向性、次の勉強のテーマによさそう）
     - https://www.amazon.co.jp/dp/4766431227/
 
 ### lil-gui
