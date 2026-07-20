@@ -1,7 +1,23 @@
+### Temporal
+
+- https://ics.media/entry/260715/
+
 ### axios
 
 - interceptors
   - https://qiita.com/buntafujikawa/items/78e9204cc9ea7eaabd3d
+    - interceptors.request
+      - ログ出力
+      - 特定条件でheaderなどに値設定
+    - interceptors.response
+      - エラー処理
+      - 特定のエラーCodeでページ遷移
+      - BFF内で利用した時に、連携するAPIからのレスポンスによってエラーを投げる
+- オープンデータを利用してBFF練習してみる
+  - https://portal.data.metro.tokyo.lg.jp/
+  - https://data.e-gov.go.jp/info/ja
+  - 余裕あればビジュアライゼーションとかも挑戦してみたい
+    - https://www.amazon.co.jp/dp/4766431227/
 
 ### lil-gui
 
