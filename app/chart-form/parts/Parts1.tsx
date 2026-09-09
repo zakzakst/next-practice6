@@ -7,7 +7,7 @@
 export const Parts = () => {
   return (
     <div>
-      <input type="text" defaultValue={`項目1`} className="input is-link" />
+      <input type="text" defaultValue={`項目1`} className="input" />
       <input type="number" defaultValue="0" />
       <button>削除</button>
     </div>
