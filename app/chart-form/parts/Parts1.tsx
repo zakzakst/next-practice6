@@ -8,8 +8,8 @@ export const Parts = () => {
   return (
     <div>
       <input type="text" defaultValue={`項目1`} className="input" />
-      <input type="number" defaultValue="0" />
-      <button>削除</button>
+      <input type="number" defaultValue="0" className="input" />
+      <button className="button">削除</button>
     </div>
   );
 };
