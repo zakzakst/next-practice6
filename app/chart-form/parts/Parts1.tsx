@@ -6,10 +6,18 @@
 
 export const Parts = () => {
   return (
-    <div>
-      <input type="text" defaultValue={`項目1`} className="input" />
-      <input type="number" defaultValue="0" className="input" />
-      <button className="button">削除</button>
+    <div className="fixed-grid has-3-cols">
+      <div className="grid">
+        <div className="cell">
+          <input type="text" defaultValue={`項目1`} className="input" />
+        </div>
+        <div className="cell">
+          <input type="number" defaultValue="0" className="input" />
+        </div>
+        <div className="cell">
+          <button className="button is-fullwidth">削除</button>
+        </div>
+      </div>
     </div>
   );
 };
