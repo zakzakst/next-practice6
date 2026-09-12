@@ -5,6 +5,10 @@
 // http://localhost:3000/chart-form
 
 export const Parts = () => {
+  const handleDelete = () => {
+    console.log("delete");
+  };
+
   return (
     <div className="fixed-grid has-3-cols">
       <div className="grid">
@@ -15,7 +19,9 @@ export const Parts = () => {
           <input type="number" defaultValue="0" className="input" />
         </div>
         <div className="cell">
-          <button className="button is-fullwidth">削除</button>
+          <button className="button is-fullwidth" onClick={handleDelete}>
+            削除
+          </button>
         </div>
       </div>
     </div>
