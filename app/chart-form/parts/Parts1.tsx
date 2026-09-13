@@ -5,6 +5,14 @@
 // http://localhost:3000/chart-form
 
 export const Parts = () => {
+  const handleChangeLabel = () => {
+    console.log("change label");
+  };
+
+  const handleChangePoint = () => {
+    console.log("change label");
+  };
+
   const handleDelete = () => {
     console.log("delete");
   };
@@ -13,10 +21,20 @@ export const Parts = () => {
     <div className="fixed-grid has-3-cols">
       <div className="grid">
         <div className="cell">
-          <input type="text" defaultValue={`項目1`} className="input" />
+          <input
+            type="text"
+            defaultValue={`項目1`}
+            className="input"
+            onChange={handleChangeLabel}
+          />
         </div>
         <div className="cell">
-          <input type="number" defaultValue="0" className="input" />
+          <input
+            type="number"
+            defaultValue="0"
+            className="input"
+            onChange={handleChangePoint}
+          />
         </div>
         <div className="cell">
           <button className="button is-fullwidth" onClick={handleDelete}>
