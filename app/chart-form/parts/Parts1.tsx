@@ -4,13 +4,22 @@
 // https://bulma.io/documentation/start/overview/
 // http://localhost:3000/chart-form
 
+import { ChangeEvent, useState } from "react";
+
+type FormValues = {
+  label: string;
+  point: number;
+};
+
 export const Parts = () => {
-  const handleChangeLabel = () => {
+  const [formValues, setFormValues] = useState<FormValues>();
+
+  const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("change label");
   };
 
   const handleChangePoint = () => {
-    console.log("change label");
+    console.log("change point");
   };
 
   const handleDelete = () => {
@@ -22,6 +31,7 @@ export const Parts = () => {
       <div className="grid">
         <div className="cell">
           <input
+            name="label"
             type="text"
             defaultValue={`項目1`}
             className="input"
@@ -30,6 +40,7 @@ export const Parts = () => {
         </div>
         <div className="cell">
           <input
+            name="point"
             type="number"
             defaultValue="0"
             className="input"
