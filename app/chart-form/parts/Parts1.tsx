@@ -15,11 +15,11 @@ export const Parts = () => {
   const [formValues, setFormValues] = useState<FormValues>();
 
   const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("change label");
+    console.log("change label", e.target.name, e.target.value);
   };
 
-  const handleChangePoint = () => {
-    console.log("change point");
+  const handleChangePoint = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("change point", e.target.name, e.target.value);
   };
 
   const handleDelete = () => {
