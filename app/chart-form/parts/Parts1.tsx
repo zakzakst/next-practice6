@@ -27,32 +27,35 @@ export const Parts = () => {
   };
 
   return (
-    <div className="fixed-grid has-3-cols">
-      <div className="grid">
-        <div className="cell">
-          <input
-            name="label"
-            type="text"
-            defaultValue={`項目1`}
-            className="input"
-            onChange={handleChangeLabel}
-          />
-        </div>
-        <div className="cell">
-          <input
-            name="point"
-            type="number"
-            defaultValue="0"
-            className="input"
-            onChange={handleChangePoint}
-          />
-        </div>
-        <div className="cell">
-          <button className="button is-fullwidth" onClick={handleDelete}>
-            削除
-          </button>
+    <>
+      <div>{JSON.stringify(formValues)}</div>
+      <div className="fixed-grid has-3-cols">
+        <div className="grid">
+          <div className="cell">
+            <input
+              name="label"
+              type="text"
+              defaultValue={`項目1`}
+              className="input"
+              onChange={handleChangeLabel}
+            />
+          </div>
+          <div className="cell">
+            <input
+              name="point"
+              type="number"
+              defaultValue="0"
+              className="input"
+              onChange={handleChangePoint}
+            />
+          </div>
+          <div className="cell">
+            <button className="button is-fullwidth" onClick={handleDelete}>
+              削除
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
