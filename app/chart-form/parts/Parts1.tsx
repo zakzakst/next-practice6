@@ -12,14 +12,25 @@ type FormValues = {
 };
 
 export const Parts = () => {
-  const [formValues, setFormValues] = useState<FormValues>();
+  const [formValues, setFormValues] = useState<FormValues>({
+    label: "",
+    point: 0,
+  });
 
   const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("change label", e.target.name, e.target.value);
+    setFormValues((v) => ({
+      ...v,
+      label: e.target.value,
+    }));
   };
 
   const handleChangePoint = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("change point", e.target.name, e.target.value);
+    setFormValues((v) => ({
+      ...v,
+      point: Number(e.target.value),
+    }));
   };
 
   const handleDelete = () => {
