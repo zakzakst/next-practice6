@@ -6,7 +6,7 @@
 
 import { ChangeEvent, useState } from "react";
 
-type FormValues = {
+export type FormValues = {
   label: string;
   point: number;
 };
@@ -16,59 +16,63 @@ const defaultValues: FormValues = {
   point: 0,
 };
 
-export const Parts = () => {
+interface Props {
+  onChangeValues: (values: FormValues) => void;
+  onDelete: () => void;
+}
+
+export const Parts = ({ onChangeValues, onDelete }: Props) => {
   const [formValues, setFormValues] = useState<FormValues>(defaultValues);
 
   const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("change label", e.target.name, e.target.value);
-    setFormValues((v) => ({
-      ...v,
+    const newValues: FormValues = {
+      ...formValues,
       label: e.target.value,
-    }));
+    };
+    setFormValues(newValues);
+    onChangeValues(newValues);
   };
 
   const handleChangePoint = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("change point", e.target.name, e.target.value);
-    setFormValues((v) => ({
-      ...v,
+    const newValues: FormValues = {
+      ...formValues,
       point: Number(e.target.value),
-    }));
+    };
+    setFormValues(newValues);
+    onChangeValues(newValues);
   };
 
   const handleDelete = () => {
-    console.log("delete");
+    onDelete();
   };
 
   return (
-    <>
-      <div>{JSON.stringify(formValues)}</div>
-      <div className="fixed-grid has-3-cols">
-        <div className="grid">
-          <div className="cell">
-            <input
-              name="label"
-              type="text"
-              defaultValue={defaultValues.label}
-              className="input"
-              onChange={handleChangeLabel}
-            />
-          </div>
-          <div className="cell">
-            <input
-              name="point"
-              type="number"
-              defaultValue={defaultValues.point}
-              className="input"
-              onChange={handleChangePoint}
-            />
-          </div>
-          <div className="cell">
-            <button className="button is-fullwidth" onClick={handleDelete}>
-              削除
-            </button>
-          </div>
+    <div className="fixed-grid has-3-cols">
+      <div className="grid">
+        <div className="cell">
+          <input
+            name="label"
+            type="text"
+            defaultValue={defaultValues.label}
+            className="input"
+            onChange={handleChangeLabel}
+          />
+        </div>
+        <div className="cell">
+          <input
+            name="point"
+            type="number"
+            defaultValue={defaultValues.point}
+            className="input"
+            onChange={handleChangePoint}
+          />
+        </div>
+        <div className="cell">
+          <button className="button is-fullwidth" onClick={handleDelete}>
+            削除
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
