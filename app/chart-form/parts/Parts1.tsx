@@ -11,11 +11,13 @@ type FormValues = {
   point: number;
 };
 
+const defaultValues: FormValues = {
+  label: "項目名",
+  point: 0,
+};
+
 export const Parts = () => {
-  const [formValues, setFormValues] = useState<FormValues>({
-    label: "",
-    point: 0,
-  });
+  const [formValues, setFormValues] = useState<FormValues>(defaultValues);
 
   const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("change label", e.target.name, e.target.value);
@@ -46,7 +48,7 @@ export const Parts = () => {
             <input
               name="label"
               type="text"
-              defaultValue={`項目1`}
+              defaultValue={defaultValues.label}
               className="input"
               onChange={handleChangeLabel}
             />
@@ -55,7 +57,7 @@ export const Parts = () => {
             <input
               name="point"
               type="number"
-              defaultValue="0"
+              defaultValue={defaultValues.point}
               className="input"
               onChange={handleChangePoint}
             />
