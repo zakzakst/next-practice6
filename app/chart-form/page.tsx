@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Parts } from "./parts/Parts1";
 import type { FormValues } from "./parts/Parts1";
+import { PieChart } from "./parts/PieChart";
+import type { PieChartItem } from "./parts/PieChart";
 
 type Item = {
   id: string;
@@ -12,6 +14,16 @@ type Item = {
 
 const Page = () => {
   const [items, setItems] = useState<Item[]>([]);
+
+  const pieChartItems = useMemo<PieChartItem[]>(() => {
+    return items.map((item) => {
+      const { label, point } = item;
+      return {
+        label,
+        point,
+      };
+    });
+  }, [items]);
 
   const handleAddItem = () => {
     const id = new Date().toISOString();
@@ -42,10 +54,13 @@ const Page = () => {
     setItems(newItems);
   };
 
+  // TODO: 並び順変更
+  // TODO: 色変更
+
   return (
     <div className="has-background-white" data-theme="light">
       <div className="container">
-        <div className="section">{JSON.stringify(items)}</div>
+        {/* <div className="section">{JSON.stringify(items)}</div> */}
         <div className="section">
           {items.map((item) => (
             <Parts
@@ -59,6 +74,9 @@ const Page = () => {
           <button className="button" onClick={handleAddItem}>
             項目を追加
           </button>
+        </div>
+        <div className="section">
+          <PieChart items={pieChartItems} />
         </div>
       </div>
     </div>
