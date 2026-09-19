@@ -57,19 +57,48 @@ const Page = () => {
     setItems(newItems);
   };
 
-  // TODO: 並び順変更
-  // TODO: 色変更
+  const moveUpItem = (id: string) => {
+    setItems((currentItems) => {
+      const index = currentItems.findIndex((item) => item.id === id);
+      if (index <= 0) return currentItems;
+
+      const newItems = [...currentItems];
+      [newItems[index - 1], newItems[index]] = [
+        newItems[index],
+        newItems[index - 1],
+      ];
+      return newItems;
+    });
+  };
+
+  const moveDownItem = (id: string) => {
+    setItems((currentItems) => {
+      const index = currentItems.findIndex((item) => item.id === id);
+      if (index >= currentItems.length) return currentItems;
+
+      const newItems = [...currentItems];
+      [newItems[index + 1], newItems[index]] = [
+        newItems[index],
+        newItems[index + 1],
+      ];
+      return newItems;
+    });
+  };
 
   return (
     <div className="has-background-white" data-theme="light">
       <div className="container">
         {/* <div className="section">{JSON.stringify(items)}</div> */}
         <div className="section">
-          {items.map((item) => (
+          {items.map((item, i) => (
             <Parts
               key={item.id}
               onChangeValues={(values) => updateItem(item.id, values)}
               onDelete={() => handleDeleteItem(item.id)}
+              canMoveUp={i > 0}
+              moveUp={() => moveUpItem(item.id)}
+              canMoveDown={i < items.length - 1}
+              moveDown={() => moveDownItem(item.id)}
             />
           ))}
         </div>
