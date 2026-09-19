@@ -10,6 +10,7 @@ type Item = {
   id: string;
   label: string;
   point: number;
+  color: string;
 };
 
 const Page = () => {
@@ -17,10 +18,11 @@ const Page = () => {
 
   const pieChartItems = useMemo<PieChartItem[]>(() => {
     return items.map((item) => {
-      const { label, point } = item;
+      const { label, point, color } = item;
       return {
         label,
         point,
+        color,
       };
     });
   }, [items]);
@@ -33,6 +35,7 @@ const Page = () => {
         id,
         label: "項目",
         point: 0,
+        color: "#888",
       },
     ]);
   };

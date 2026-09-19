@@ -9,11 +9,13 @@ import { ChangeEvent, useState } from "react";
 export type FormValues = {
   label: string;
   point: number;
+  color: string;
 };
 
 const defaultValues: FormValues = {
   label: "項目名",
   point: 0,
+  color: "#888",
 };
 
 interface Props {
@@ -42,12 +44,21 @@ export const Parts = ({ onChangeValues, onDelete }: Props) => {
     onChangeValues(newValues);
   };
 
+  const handleChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValues: FormValues = {
+      ...formValues,
+      color: e.target.value,
+    };
+    setFormValues(newValues);
+    onChangeValues(newValues);
+  };
+
   const handleDelete = () => {
     onDelete();
   };
 
   return (
-    <div className="fixed-grid has-3-cols">
+    <div className="fixed-grid has-4-cols">
       <div className="grid">
         <div className="cell">
           <input
@@ -65,6 +76,15 @@ export const Parts = ({ onChangeValues, onDelete }: Props) => {
             defaultValue={defaultValues.point}
             className="input"
             onChange={handleChangePoint}
+          />
+        </div>
+        <div className="cell">
+          <input
+            name="color"
+            type="color"
+            defaultValue={defaultValues.color}
+            className="input"
+            onChange={handleChangeColor}
           />
         </div>
         <div className="cell">

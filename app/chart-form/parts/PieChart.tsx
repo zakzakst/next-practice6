@@ -17,6 +17,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export type PieChartItem = {
   label: string;
   point: number;
+  color: string;
 };
 
 interface Props {
@@ -27,9 +28,10 @@ export const PieChart = ({ items }: Props) => {
   const data = useMemo<ChartData<"pie">>(() => {
     const labels = items.map((item) => item.label);
     const points = items.map((item) => item.point);
+    const colors = items.map((item) => item.color);
     return {
       labels,
-      datasets: [{ data: points }],
+      datasets: [{ data: points, backgroundColor: colors }],
     };
   }, [items]);
 
