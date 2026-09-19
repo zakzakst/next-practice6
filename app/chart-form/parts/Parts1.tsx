@@ -5,6 +5,7 @@
 // http://localhost:3000/chart-form
 
 import { ChangeEvent, useState } from "react";
+import clsx from "clsx";
 
 export type FormValues = {
   label: string;
@@ -21,10 +22,33 @@ const defaultValues: FormValues = {
 interface Props {
   onChangeValues: (values: FormValues) => void;
   onDelete: () => void;
+  canMoveUp: boolean;
+  moveUp: () => void;
+  canMoveDown: boolean;
+  moveDown: () => void;
 }
 
-export const Parts = ({ onChangeValues, onDelete }: Props) => {
+export const Parts = ({
+  onChangeValues,
+  onDelete,
+  canMoveUp,
+  moveUp,
+  canMoveDown,
+  moveDown,
+}: Props) => {
   const [formValues, setFormValues] = useState<FormValues>(defaultValues);
+
+  const handleMoveUp = () => {
+    if (canMoveUp) {
+      moveUp();
+    }
+  };
+
+  const handleMoveDown = () => {
+    if (canMoveDown) {
+      moveDown();
+    }
+  };
 
   const handleChangeLabel = (e: ChangeEvent<HTMLInputElement>) => {
     const newValues: FormValues = {
@@ -58,8 +82,32 @@ export const Parts = ({ onChangeValues, onDelete }: Props) => {
   };
 
   return (
-    <div className="fixed-grid has-4-cols">
+    <div className="fixed-grid has-5-cols">
       <div className="grid">
+        <div className="cell">
+          <div className="fixed-grid has-2-cols">
+            <div className="grid">
+              <div className="cell">
+                <button
+                  className="button is-fullwidth is-small"
+                  onClick={handleMoveUp}
+                  disabled={!canMoveUp}
+                >
+                  ↑
+                </button>
+              </div>
+              <div className="cell">
+                <button
+                  className="button is-fullwidth is-small"
+                  onClick={handleMoveDown}
+                  disabled={!canMoveDown}
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="cell">
           <input
             name="label"
