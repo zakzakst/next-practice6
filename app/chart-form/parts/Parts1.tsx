@@ -1,11 +1,6 @@
 "use client";
 
-// https://chachart.net/pie
-// https://bulma.io/documentation/start/overview/
-// http://localhost:3000/chart-form
-
 import { ChangeEvent, useState } from "react";
-import clsx from "clsx";
 
 export type FormValues = {
   label: string;

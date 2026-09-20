@@ -1,5 +1,9 @@
 "use client";
 
+// https://chachart.net/pie
+// https://bulma.io/documentation/start/overview/
+// http://localhost:3000/chart-form
+
 import { useState, useMemo } from "react";
 import { Parts } from "./parts/Parts1";
 import type { FormValues } from "./parts/Parts1";
