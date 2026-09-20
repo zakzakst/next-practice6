@@ -1,3 +1,5 @@
+// http://localhost:3000/_sapmle
+
 import { Parts } from "./parts/Parts1";
 
 const Page = () => {
