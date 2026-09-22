@@ -34,18 +34,26 @@ export const Parts = () => {
 
       // 差分を計算
       firstPositions.forEach((first, key) => {
+        const element = itemRefs.current.get(key);
         const last = lastPositions.get(key);
 
-        if (!last) {
+        if (!element || !last) {
           return;
         }
 
         const deltaX = first.x - last.x;
         const deltaY = first.y - last.y;
 
-        console.log(key, {
-          deltaX,
-          deltaY,
+        element.style.transform = `
+    translate(${deltaX}px, ${deltaY}px)
+  `;
+
+        // play
+        requestAnimationFrame(() => {
+          element.style.transform = "translate(0, 0)";
+          element.style.transitionDuration = "1s";
+
+          // animationを使わないとtransitionの処理が面倒くさい（このコードも正確にはアニメーション完了後にtransition削除しないと、再度アニメーションさせようとしたときに変になるはず）
         });
       });
     });
