@@ -45,8 +45,8 @@ export const Parts = () => {
         const deltaY = first.y - last.y;
 
         element.style.transform = `
-    translate(${deltaX}px, ${deltaY}px)
-  `;
+          translate(${deltaX}px, ${deltaY}px)
+        `;
 
         // play
         requestAnimationFrame(() => {
