@@ -1,3 +1,11 @@
+### 見ておく
+
+- https://ics.media/entry/260803/
+- https://ics.media/entry/260903/
+- https://ics.media/entry/250307/
+- https://ics.media/entry/230510/
+- https://ics.media/entry/251215/
+
 ### 真似してみる
 
 - https://chachart.net/
