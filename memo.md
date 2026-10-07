@@ -4,7 +4,6 @@
 - https://ics.media/entry/260903/
 - https://ics.media/entry/250307/
 - https://ics.media/entry/230510/
-- https://ics.media/entry/251215/
 
 ### 真似してみる
 
