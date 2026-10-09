@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "./styles.module.css";
+
 export const Parts = () => {
   return (
     <div>
