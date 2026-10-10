@@ -1,0 +1,16 @@
+/* 動き回るアイコン（アンカー） */
+.heartIcon {
+  position: absolute;
+  animation: move-heart 10s ease-in-out infinite alternate;
+
+  anchor-name: --tooltip-anchor; /* 🌟アンカー名を付ける */
+}
+
+/* フキダシ */
+.tooltip {
+  position: absolute;
+  top: anchor(bottom);
+  left: anchor(center);
+
+  position-anchor: --tooltip-anchor; /* 🌟どのアンカーを見るか指定 */
+}
