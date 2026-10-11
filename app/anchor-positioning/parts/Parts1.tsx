@@ -4,12 +4,18 @@ import styles from "./styles.module.css";
 
 export const Parts = () => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.heartIcon}>
-        <img className="heart-image" alt="" src="..." />
+        <img
+          alt="ハートのアイコン"
+          className={styles.heartImage}
+          src="https://placehold.jp/150x150.png"
+        />
       </div>
       <div className={styles.tooltip}>
-        <p>ハートがどこへ行っても下にピタッとついてくるよ。</p>
+        <p className={styles.tooltipText}>
+          ハートがどこへ行っても下にピタッとついてくるよ。
+        </p>
       </div>
     </div>
   );
