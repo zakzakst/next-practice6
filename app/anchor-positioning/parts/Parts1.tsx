@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./styles.module.css";
+import styles from "./styles1.module.css";
 
 export const Parts = () => {
   return (
@@ -14,7 +14,7 @@ export const Parts = () => {
       </div>
       <div className={styles.tooltip}>
         <p className={styles.tooltipText}>
-          ハートがどこへ行っても下にピタッとついてくるよ。
+          フキダシの大きさは、ハートの大きさに合わせて変わるよ。
         </p>
       </div>
     </div>

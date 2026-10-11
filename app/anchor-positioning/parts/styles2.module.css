@@ -1,0 +1,55 @@
+.wrapper {
+  height: 260px;
+}
+
+/* 拡大・縮小するアイコン（アンカー） */
+.heartIcon {
+  width: 45px;
+  height: 45px;
+
+  animation: pulse-heart 7s ease-in-out infinite; /* アニメーション */
+
+  anchor-name: --tooltip-anchor; /* 🌟アンカー名を付ける */
+}
+
+.heartImage {
+  width: 100%;
+  height: 100%;
+}
+
+/* フキダシ */
+.tooltip {
+  position: absolute;
+  top: calc(anchor(bottom) - 10px);
+  left: anchor(center);
+
+  display: grid;
+  place-items: center;
+
+  min-width: calc(
+    200px + 2rem + 4px
+  ); /* 最小幅：テキストの幅 + 左右のpadding + 左右のborder */
+  width: calc(anchor-size(width) * 4);
+  height: calc(anchor-size(width) * 2.5);
+
+  position-anchor: --tooltip-anchor; /* 🌟どのアンカーを見るか指定 */
+}
+
+.tooltipText {
+  width: 200px;
+}
+
+/* アイコンが大きくなったり小さくなったりするアニメーション */
+@keyframes pulse-heart {
+  0%,
+  100% {
+    width: 45px;
+    height: 45px;
+    translate: 0 calc(45px / 2 * -1);
+  }
+  50% {
+    width: 75px;
+    height: 75px;
+    translate: 0 calc(75px / 2 * -1);
+  }
+}
