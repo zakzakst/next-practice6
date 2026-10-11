@@ -1,7 +1,8 @@
 // http://localhost:3000/anchor-positioning
 // https://ics.media/entry/251215/
 
-import { Parts } from "./parts/Parts1";
+// import { Parts } from "./parts/Parts1";
+import { Parts } from "./parts/Parts2";
 
 const Page = () => {
   return (

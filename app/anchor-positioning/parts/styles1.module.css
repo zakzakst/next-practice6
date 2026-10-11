@@ -1,0 +1,53 @@
+/* アイコンが動き回るフィールド */
+.wrapper {
+  position: relative;
+  width: min(500px, 100%);
+  height: 260px;
+}
+
+/* 動き回るアイコン（アンカー） */
+.heartIcon {
+  position: absolute;
+  animation: move-heart 10s ease-in-out infinite alternate; /* アニメーション */
+
+  /* アンカー名 */
+  anchor-name: --tooltip-anchor; /* 🌟アンカー名を付ける */
+}
+
+.heartImage {
+  width: 48px;
+  height: 48px;
+}
+
+/* フキダシ */
+.tooltip {
+  position: absolute;
+  top: calc(anchor(bottom) + 10px);
+  left: anchor(center);
+
+  position-anchor: --tooltip-anchor; /* 🌟どのアンカーを見るか指定 */
+}
+
+.tooltipText {
+  width: 180px;
+}
+
+/* アイコンがフィールド内を移動するアニメーション */
+@keyframes move-heart {
+  0% {
+    top: 28px;
+    left: 40px;
+  }
+  35% {
+    top: 24px;
+    left: calc(100% - 88px);
+  }
+  65% {
+    top: calc(100% - 110px);
+    left: calc(100% - 96px);
+  }
+  100% {
+    top: calc(100% - 96px);
+    left: 40px;
+  }
+}
