@@ -2,7 +2,8 @@
 // https://ics.media/entry/251215/
 
 // import { Parts } from "./parts/Parts1";
-import { Parts } from "./parts/Parts2";
+// import { Parts } from "./parts/Parts2";
+import { Parts } from "./parts/Parts3";
 
 const Page = () => {
   return (
