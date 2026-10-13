@@ -1,0 +1,102 @@
+:root {
+  --spring-easing: cubic-bezier(0.17, 0.89, 0.32, 1.28);
+}
+
+.wrapper {
+  font-family: "DotGothic16", sans-serif;
+}
+
+.book-list {
+  display: flex;
+  gap: 12px;
+}
+
+.book {
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-items: start;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  width: 80px;
+  height: 380px;
+  padding: 2rem 0.3rem;
+  border: 3px solid #222222;
+  border-radius: 2px;
+  background: #fffefc;
+  box-shadow: 2px 2px 0 #111111;
+  transition:
+    translate 0.18s ease-out,
+    border-color 0.2s ease-out;
+}
+
+.book:nth-of-type(1) {
+  background-color: #7a729f;
+}
+
+.book:nth-of-type(2) {
+  background-color: #a19450;
+}
+
+.book:nth-of-type(3) {
+  background-color: #b27171;
+}
+
+.book:nth-of-type(4) {
+  background-color: #516e85;
+}
+
+.book:nth-of-type(5) {
+  background-color: #855175;
+}
+
+/* 背表紙のラベル（縦書き） */
+.bookLabel {
+  font-size: 1rem;
+  color: #ffffff;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+}
+
+/* クリックしやすいようにヒットエリア拡張 */
+.book::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+}
+
+.book:hover {
+  translate: 0 -4px;
+}
+
+/* 選択中の本（見た目） */
+.book.isSelected {
+  border: 5px solid #f3f3f3;
+}
+
+/* ▼ 指さしポインター（選択中／ホバー中の本の真下にくる） */
+.pointer {
+  position: absolute;
+  top: calc(anchor(bottom) - 4rem);
+  left: anchor(center);
+
+  pointer-events: none;
+  transition:
+    left 0.45s var(--spring-easing),
+    top 0.45s var(--spring-easing);
+  rotate: -20deg;
+
+  position-anchor: --selected-book; /* 🌟どのアンカーを見るか指定 */
+}
+
+.pointer::before {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-image: url("./images/icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 4px 4px rgba(120, 80, 130, 0.35));
+}
