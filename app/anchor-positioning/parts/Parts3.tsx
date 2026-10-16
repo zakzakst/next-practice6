@@ -41,6 +41,9 @@ const books: Book[] = [
 
 export const Parts = () => {
   const [selectedBookId, setSelectedBookId] = useState<number>(books[0].id);
+  const [tempSelectedBookId, setTempSelectedBookId] = useState<number | null>(
+    null,
+  );
 
   // useEffect(() => {
   //   const buttons = document.querySelectorAll(".book");
@@ -92,18 +95,28 @@ export const Parts = () => {
   //   });
   // }, []);
 
-  const handleClick = (e: MouseEvent, id: Book["id"]) => {};
+  const handleClick = (e: MouseEvent, id: Book["id"]) => {
+    setSelectedBookId(id);
+  };
 
-  const handleMouseEnter = (e: MouseEvent, id: Book["id"]) => {};
+  const handleMouseEnter = (e: MouseEvent, id: Book["id"]) => {
+    setTempSelectedBookId(id);
+  };
 
-  const handleMouseLeave = (e: MouseEvent, id: Book["id"]) => {};
+  const handleMouseLeave = (e: MouseEvent, id: Book["id"]) => {
+    setTempSelectedBookId(null);
+  };
 
-  const handleFocus = (e: FocusEvent, id: Book["id"]) => {};
+  const handleFocus = (e: FocusEvent, id: Book["id"]) => {
+    setTempSelectedBookId(id);
+  };
 
-  const handleBlur = (e: FocusEvent, id: Book["id"]) => {};
+  const handleBlur = (e: FocusEvent, id: Book["id"]) => {
+    setTempSelectedBookId(null);
+  };
 
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       {/* <div className="book-list">
         <button className="book isSelected">
           <span className="bookLabel">かんたん片付けBOOK</span>
@@ -126,29 +139,35 @@ export const Parts = () => {
           <span className="bookLabel">ICS</span>
         </button>
       </div> */}
-
-      {books.map((book) => (
-        <button
-          key={book.id}
-          className={clsx("book", book.id === selectedBookId && "isSelected")}
-          style={
-            book.id === selectedBookId
-              ? { anchorName: "--selected-book" }
-              : undefined
-          }
-          onClick={(e) => handleClick(e, book.id)}
-          onMouseEnter={(e) => handleMouseEnter(e, book.id)}
-          onMouseLeave={(e) => handleMouseLeave(e, book.id)}
-          onFocus={(e) => handleFocus(e, book.id)}
-          onBlur={(e) => handleBlur(e, book.id)}
-        >
-          <span className="bookLabel">{book.title}</span>
-          <span className="bookLabel">{book.author}</span>
-        </button>
-      ))}
+      <div className={styles.bookList}>
+        {books.map((book) => (
+          <button
+            key={book.id}
+            className={clsx(
+              styles.book,
+              book.id === selectedBookId && "isSelected",
+            )}
+            style={
+              book.id === tempSelectedBookId
+                ? { anchorName: "--selected-book" }
+                : undefined
+            }
+            onClick={(e) => handleClick(e, book.id)}
+            onMouseEnter={(e) => handleMouseEnter(e, book.id)}
+            onMouseLeave={(e) => handleMouseLeave(e, book.id)}
+            onFocus={(e) => handleFocus(e, book.id)}
+            onBlur={(e) => handleBlur(e, book.id)}
+          >
+            <span className={styles.bookLabel}>{book.title}</span>
+            <span className={styles.bookLabel}>{book.author}</span>
+          </button>
+        ))}
+      </div>
 
       {/* 指さしポインター（アンカーだけ見て動く） */}
-      <span aria-hidden="true" className="pointer"></span>
+      <span aria-hidden="true" className={styles.pointer}>
+        〇
+      </span>
     </div>
   );
 };
