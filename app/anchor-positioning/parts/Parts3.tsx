@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { MouseEvent, FocusEvent } from "react";
 import styles from "./styles3.module.css";
 import clsx from "clsx";
 
@@ -91,6 +92,16 @@ export const Parts = () => {
   //   });
   // }, []);
 
+  const handleClick = (e: MouseEvent, id: Book["id"]) => {};
+
+  const handleMouseEnter = (e: MouseEvent, id: Book["id"]) => {};
+
+  const handleMouseLeave = (e: MouseEvent, id: Book["id"]) => {};
+
+  const handleFocus = (e: FocusEvent, id: Book["id"]) => {};
+
+  const handleBlur = (e: FocusEvent, id: Book["id"]) => {};
+
   return (
     <div className="wrapper">
       {/* <div className="book-list">
@@ -125,6 +136,11 @@ export const Parts = () => {
               ? { anchorName: "--selected-book" }
               : undefined
           }
+          onClick={(e) => handleClick(e, book.id)}
+          onMouseEnter={(e) => handleMouseEnter(e, book.id)}
+          onMouseLeave={(e) => handleMouseLeave(e, book.id)}
+          onFocus={(e) => handleFocus(e, book.id)}
+          onBlur={(e) => handleBlur(e, book.id)}
         >
           <span className="bookLabel">{book.title}</span>
           <span className="bookLabel">{book.author}</span>
