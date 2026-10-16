@@ -6,7 +6,7 @@
   font-family: "DotGothic16", sans-serif;
 }
 
-.book-list {
+.bookList {
   display: flex;
   gap: 12px;
 }
@@ -94,7 +94,7 @@
   display: block;
   width: 70px;
   height: 70px;
-  background-image: url("./images/icon.png");
+  /* background-image: url("./images/icon.png"); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
