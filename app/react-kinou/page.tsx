@@ -1,6 +1,7 @@
 // http://localhost:3000/react-kinou
 // https://ics.media/entry/260903/
 // https://ja.react.dev/reference/react/Suspense
+// https://ja.react.dev/reference/react/use
 
 import { Parts } from "./parts/Parts1";
 
