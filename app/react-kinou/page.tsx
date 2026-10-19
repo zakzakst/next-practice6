@@ -3,7 +3,8 @@
 // https://ja.react.dev/reference/react/Suspense
 // https://ja.react.dev/reference/react/use
 
-import { Parts } from "./parts/Parts1";
+// import { Parts } from "./parts/Parts1";
+import { Parts } from "./parts/Parts2";
 
 const Page = () => {
   return (
