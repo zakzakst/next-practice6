@@ -2,19 +2,22 @@
 
 import { useState, useTransition } from "react";
 
-export const Parts = () => {
-  const [quantity, setQuantity] = useState(1);
-  const [total, setTotal] = useState(2700);
+const sleep = (milliseconds: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));
 
-  // useTransitionフック
+const calculateTotal = async (): Promise<number> => {
+  await sleep(3000);
+  return 100;
+};
+
+export const Parts = () => {
+  const [total, setTotal] = useState(2700);
   const [isPending, startTransition] = useTransition();
 
-  const handleQuantityChange = (event) => {
-    const nextQuantity = Number(event.target.value);
-    setQuantity(nextQuantity);
+  const handleCalculateTotal = () => {
     startTransition(async () => {
       // 時間がかかる計算処理はstartTransitionを使う
-      const calculated = await calculateTotal(color, size, nextQuantity);
+      const calculated = await calculateTotal();
       startTransition(() => {
         // 再度startTransitionでstateを更新
         setTotal(calculated);
@@ -25,12 +28,7 @@ export const Parts = () => {
   return (
     <div className="transition">
       <div className="transition__controls">
-        {/** 数量を変更 */}
-        <NumberInput
-          label="Quantity"
-          value={quantity}
-          onChange={handleQuantityChange}
-        />
+        <button onClick={handleCalculateTotal}>click</button>
       </div>
 
       <dl className="transition__results">
