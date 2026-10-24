@@ -1,0 +1,42 @@
+.customized,
+.customized::picker(select) {
+  appearance: base-select;
+}
+
+.styled,
+.styled::picker(select) {
+  appearance: base-select;
+}
+
+.styled {
+  width: 200px;
+  height: 48px;
+  padding: 8px 16px;
+  border-color: #cf256d;
+  &:hover {
+    background-color: color-mix(in srgb, #cf256d 10%, transparent);
+  }
+}
+/* 選択肢のポップオーバーのスタイルを変更 */
+.styled::picker(select) {
+  border-color: #cf256d;
+  border-radius: 8px;
+  margin: 8px 0;
+  box-shadow: 4px 4px #ff67b3;
+  /* アニメーションも設定できる */
+  transition: scale 0.2s;
+}
+.styled::picker(select):hover {
+  scale: 1.05;
+}
+.styled {
+  & > option {
+    padding: 16px 8px;
+    &:hover {
+      background-color: color-mix(in srgb, #cf256d 10%, transparent);
+    }
+    &:checked {
+      color: #cf256d;
+    }
+  }
+}
