@@ -1,7 +1,8 @@
 // http://localhost:3000/custom-select
 // https://ics.media/entry/250307/
 
-import { Parts } from "./parts/Parts1";
+// import { Parts } from "./parts/Parts1";
+import { Parts } from "./parts/Parts2";
 
 const Page = () => {
   return (

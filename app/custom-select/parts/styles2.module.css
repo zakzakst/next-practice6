@@ -1,0 +1,12 @@
+.citySelect,
+.citySelect::picker(select) {
+  appearance: base-select;
+}
+
+.citySelect {
+  background-color: #888;
+}
+
+.citySelect .citySelectButton .citySmall {
+  display: none;
+}
