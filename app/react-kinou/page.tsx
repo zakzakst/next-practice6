@@ -2,6 +2,7 @@
 // https://ics.media/entry/260903/
 // https://ja.react.dev/reference/react/Suspense
 // https://ja.react.dev/reference/react/use
+// https://ja.react.dev/reference/react/useTransition
 
 // import { Parts } from "./parts/Parts1";
 // import { Parts } from "./parts/Parts2";
