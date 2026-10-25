@@ -1,7 +1,5 @@
 ### 見ておく
 
-- https://ics.media/entry/230510/
-
 ### 真似してみる
 
 - https://chachart.net/
