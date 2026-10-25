@@ -1,6 +1,5 @@
 ### 見ておく
 
-- https://ics.media/entry/260803/
 - https://ics.media/entry/230510/
 
 ### 真似してみる
