@@ -27,7 +27,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Hello Bulma!</title>
+        <title>練習</title>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"

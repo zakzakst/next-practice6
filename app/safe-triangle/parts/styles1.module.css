@@ -1,0 +1,87 @@
+:where(.actionList, .submenu) {
+  width: 220px;
+}
+
+.actionList {
+  anchor-name: --parent-menu;
+}
+
+.actionItem {
+  position: relative;
+
+  /* ポインターとサブメニューの上下端を結ぶ三角形。 */
+  &::before {
+    content: "";
+    position: fixed;
+    /* トリガーやサブメニューより背面に重ねる。 */
+    z-index: 2;
+    top: var(--safe-top);
+    left: var(--safe-left);
+    width: var(--safe-width);
+    height: var(--safe-height);
+    /* ホバー中だけ有効にするため、初期状態では非表示。 */
+    display: none;
+    clip-path: polygon(
+      0 var(--safe-y),
+      /* ① */ 100% 0,
+      /* ② */ 100% 100% /* ③ */
+    );
+    background-color: #f00;
+    opacity: 0.1;
+  }
+
+  /* キーボード操作中も、フォーカスが項目内にある間はメニューを保つ。 */
+  &:is(:hover, :has(:focus-visible)) {
+    /* 後続トリガーより上へ積み、上下どちらの三角形でもポインターを保護する。 */
+    z-index: 3;
+
+    > .submenu {
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    /* セーフ・トライアングルより手前でトリガーを操作できるようにする。 */
+    > .actionTrigger {
+      z-index: 3;
+    }
+  }
+
+  /* タッチ端末ではセーフ・トライアングルとホバー表現をどちらも有効にしない。 */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::before {
+      /* 透明な三角形のヒットエリアを有効にする。 */
+      display: block;
+    }
+
+    /* &:is(:hover, :has(:focus-visible)) > .actionTrigger {
+      color: var(--color-accent);
+      background: var(--color-surface-hover);
+
+      &::after {
+        translate: var(--indicator-active-translate);
+      }
+    } */
+  }
+}
+
+.actionTrigger {
+  width: 100%;
+  text-align: left;
+}
+
+/* 親パネルの右側へ、互いの上端を揃えて配置する。 */
+.submenu {
+  position: fixed;
+  position-anchor: --parent-menu;
+  position-area: inline-end span-block-end;
+  margin-inline-start: 0px;
+  display: grid;
+  z-index: 4;
+
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s allow-discrete;
+}
