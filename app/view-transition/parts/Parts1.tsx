@@ -1,5 +1,6 @@
 "use client";
 
+import "./parts1.css";
 import { startTransition, useState, ViewTransition } from "react";
 
 export const Parts = () => {
@@ -24,7 +25,7 @@ export const Parts = () => {
       </button>
 
       {isVisible && (
-        <ViewTransition>
+        <ViewTransition name="greeting">
           <div className="mt-6 rounded-lg border p-6">
             <p className="text-lg font-bold">こんにちは！</p>
             <p>ViewTransition のアニメーション対象です。</p>
