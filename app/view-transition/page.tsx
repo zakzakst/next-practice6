@@ -2,7 +2,8 @@
 // https://ics.media/entry/230510/
 // https://ja.react.dev/reference/react/ViewTransition
 
-import { Parts } from "./parts/Parts1";
+// import { Parts } from "./parts/Parts1";
+import { Parts } from "./parts/Parts2";
 
 const Page = () => {
   return (
