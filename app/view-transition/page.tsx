@@ -3,7 +3,8 @@
 // https://ja.react.dev/reference/react/ViewTransition
 
 // import { Parts } from "./parts/Parts1";
-import { Parts } from "./parts/Parts2";
+// import { Parts } from "./parts/Parts2";
+import { Parts } from "./parts/Parts3";
 
 const Page = () => {
   return (
