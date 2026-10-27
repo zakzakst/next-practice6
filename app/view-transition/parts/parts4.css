@@ -1,0 +1,38 @@
+::view-transition-new(.card-enter) {
+  animation: card-enter 300ms ease-out both;
+}
+
+::view-transition-old(.card-exit) {
+  animation: card-exit 250ms ease-in both;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes card-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(.card-enter),
+  ::view-transition-old(.card-exit) {
+    animation-duration: 1ms;
+  }
+}
