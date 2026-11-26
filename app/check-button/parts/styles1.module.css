@@ -1,3 +1,8 @@
+.container {
+  display: grid;
+  justify-content: center;
+}
+
 /* チェックマークのアニメーション */
 .content-bg-check {
   background-image: linear-gradient(
